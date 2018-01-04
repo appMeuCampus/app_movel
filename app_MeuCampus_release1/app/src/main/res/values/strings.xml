@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">app_MeuCampus_release1</string>
+    <string name="menu_noticias">Notícias</string>
+    <string name="menu_notas_faltas">Notas/Faltas</string>
+    <string name="menu_mapa">Mapa</string>
+    <string name="menu_cardapio">Cardápio</string>
+    <string name="open_drawer">Abrir</string>
+    <string name="cloe_drawer">Fechar</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="ultimas_noticias">Últimas Notícias</string>
+    <string name="cardapio">Cardápio do dia</string>
+    <string name="valor_cardapio_a1">chicória</string>
+    <string name="valor_cardapio_j1">chicória</string>
+    <string name="valor_cardapio_a2">macarronese</string>
+    <string name="valor_cardapio_j2">macarronese</string>
+    <string name="valor_cardapio_a3">frango assado</string>
+    <string name="valor_cardapio_j3">frango assado</string>
+    <string name="valor_cardapio_a4">couve refogada</string>
+    <string name="valor_cardapio_j4">couve refogada</string>
+    <string name="valor_cardapio_a5">arroz</string>
+    <string name="valor_cardapio_j5">arroz</string>
+    <string name="valor_cardapio_a6">feijão</string>
+    <string name="valor_cardapio_j6">feijão</string>
+</resources>
