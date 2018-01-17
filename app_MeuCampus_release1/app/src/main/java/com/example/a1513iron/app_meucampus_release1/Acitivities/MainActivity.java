@@ -2,7 +2,6 @@ package com.example.a1513iron.app_meucampus_release1.Acitivities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;

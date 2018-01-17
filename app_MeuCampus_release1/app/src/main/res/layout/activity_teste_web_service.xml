@@ -8,191 +8,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="RandomUser"
         android:id="@+id/t_textView"
+        android:text="id"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/t_imageView"
-        android:layout_below="@+id/t_textView"
-        android:layout_alignLeft="@+id/t_textView"
-        android:layout_marginTop="30dp"
-        android:layout_alignParentLeft="true"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/t_textView2"
-        android:layout_below="@+id/t_textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/t_textView"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentRight="true" />
+        android:layout_marginTop="23dp"
+        android:text="titulo" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/t_textView3"
-        android:layout_below="@+id/t_textView4"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentRight="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/t_textView4"
-        android:layout_below="@+id/t_textView7"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentRight="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/t_textView5"
-        android:layout_below="@+id/t_imageView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="71dp"
-        android:layout_alignParentRight="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nome:"
-        android:id="@+id/t_textView6"
-        android:layout_marginLeft="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_alignBaseline="@+id/t_textView5"
-        android:layout_alignBottom="@+id/t_textView5"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/t_textView7"
-        android:layout_below="@+id/t_textView8"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentRight="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/t_textView8"
-        android:layout_below="@+id/t_textView11"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentRight="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/t_textView9"
-        android:layout_below="@+id/t_textView10"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentRight="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/t_textView10"
-        android:layout_below="@+id/t_textView2"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentRight="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/t_textView11"
-        android:layout_below="@+id/t_textView5"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentRight="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/t_textView12"
-        android:layout_below="@+id/t_textView9"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentRight="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sobrenome:"
-        android:id="@+id/t_textView13"
-        android:layout_below="@+id/t_textView6"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="22dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email:"
-        android:id="@+id/t_textView14"
-        android:layout_below="@+id/t_textView13"
-        android:layout_alignLeft="@+id/t_textView13"
-        android:layout_alignStart="@+id/t_textView13" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Endereço:"
-        android:id="@+id/t_textView15"
-        android:layout_below="@+id/t_textView14"
-        android:layout_alignLeft="@+id/t_textView14"
-        android:layout_alignStart="@+id/t_textView14" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cidade:"
-        android:id="@+id/t_textView16"
-        android:layout_below="@+id/t_textView15"
-        android:layout_alignLeft="@+id/t_textView15"
-        android:layout_alignStart="@+id/t_textView15" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Estado:"
-        android:id="@+id/t_textView17"
-        android:layout_below="@+id/t_textView16"
-        android:layout_alignLeft="@+id/t_textView14"
-        android:layout_alignStart="@+id/t_textView14" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Username:"
-        android:id="@+id/t_textView18"
-        android:layout_below="@+id/t_textView17"
-        android:layout_alignLeft="@+id/t_textView16"
-        android:layout_alignStart="@+id/t_textView16" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Senha:"
-        android:id="@+id/t_textView19"
-        android:layout_below="@+id/t_textView18"
-        android:layout_alignLeft="@+id/t_textView18"
-        android:layout_alignStart="@+id/t_textView18" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nascimento:"
-        android:id="@+id/t_textView20"
-        android:layout_below="@+id/t_textView19"
-        android:layout_alignLeft="@+id/t_textView19"
-        android:layout_alignStart="@+id/t_textView19" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Telefone:"
-        android:id="@+id/textView21"
-        android:layout_alignTop="@+id/t_textView12"
-        android:layout_alignLeft="@+id/t_textView20"
-        android:layout_alignStart="@+id/t_textView20" />
 </RelativeLayout>
