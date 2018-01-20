@@ -42,7 +42,7 @@
         <activity android:name=".Acitivities.TelaLugarActivity" />
         <activity android:name=".Acitivities.MostrarNoticiaActivity" />
         <activity android:name=".Acitivities.ListaNoticiasActivity" />
-        <activity android:name=".Teste.TesteWebServiceActivity" />
+        <activity android:name=".Teste.Teste_Activity" />
         <activity android:name=".Acitivities.CardapioActivity"></activity>
     </application>
 

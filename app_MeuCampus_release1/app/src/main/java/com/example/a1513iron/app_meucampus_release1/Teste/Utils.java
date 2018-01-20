@@ -16,7 +16,6 @@ public class Utils {
         this.index = i;
         Noticias_Classe retorno;
         json = NetworkUtils.getJSONFromAPI(end);
-        Log.i("Resultado", "PORRA" + json);
         retorno = parseJson(json);
 
         return retorno;
@@ -31,8 +30,7 @@ public class Utils {
             //Atribui os objetos que estão nas camadas mais altas
             noticiaa.setID((jsonObj.getJSONObject(index).getInt("id")));
             noticiaa.setTitulo(jsonObj.getJSONObject(index).getString("titulo"));
-            Log.i("BLDO","1   " + Integer.toString(noticiaa.getID()));
-            Log.i("BLDO2","2   " + noticiaa.getTitulo());
+            noticiaa.numero_de_noticias = jsonObj.length();
 
             return noticiaa;
         }catch (JSONException e){

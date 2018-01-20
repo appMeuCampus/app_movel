@@ -7,6 +7,7 @@ import java.util.Date;
 
 public class Noticias_Classe implements Parcelable{
 
+    public int numero_de_noticias = 0;
     private int ID = 0;
     private String titulo = "Noticia";
     private String texto = "Bla bla bla bla bla...";
@@ -18,6 +19,7 @@ public class Noticias_Classe implements Parcelable{
     }
 
     protected Noticias_Classe(Parcel in) {
+        numero_de_noticias = in.readInt();
         ID = in.readInt();
         titulo = in.readString();
         texto = in.readString();
@@ -71,6 +73,7 @@ public class Noticias_Classe implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(numero_de_noticias);
         parcel.writeInt(ID);
         parcel.writeString(titulo);
         parcel.writeString(texto);

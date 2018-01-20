@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.a1513iron.app_meucampus_release1.R;
-import com.example.a1513iron.app_meucampus_release1.Teste.TesteWebServiceActivity;
+import com.example.a1513iron.app_meucampus_release1.Teste.Teste_Activity;
 import com.example.a1513iron.app_meucampus_release1.classes.Cardapio_Classe;
 import com.example.a1513iron.app_meucampus_release1.classes.RecyclerAdapter;
 
@@ -107,7 +107,7 @@ public class CardapioActivity extends MainActivity implements NavigationView.OnN
             case R.id.menu_teste: {
                 Toast.makeText(this, "Menu Teste", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(getApplicationContext(), TesteWebServiceActivity.class);
+                Intent intent = new Intent(getApplicationContext(), Teste_Activity.class);
                 startActivity(intent);
                 break;
             }
