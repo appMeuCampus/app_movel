@@ -9,8 +9,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Utils {
-    public Noticias_Classe getInformacao(String end){
+    private int index;
+
+    public Noticias_Classe getInformacao(String end, int i){
         String json;
+        this.index = i;
         Noticias_Classe retorno;
         json = NetworkUtils.getJSONFromAPI(end);
         Log.i("Resultado", "PORRA" + json);
@@ -26,8 +29,8 @@ public class Utils {
             JSONArray jsonObj = new JSONArray(json);
 
             //Atribui os objetos que estão nas camadas mais altas
-            noticiaa.setID((jsonObj.getJSONObject(0).getInt("id")));
-            noticiaa.setTitulo(jsonObj.getJSONObject(0).getString("titulo"));
+            noticiaa.setID((jsonObj.getJSONObject(index).getInt("id")));
+            noticiaa.setTitulo(jsonObj.getJSONObject(index).getString("titulo"));
             Log.i("BLDO","1   " + Integer.toString(noticiaa.getID()));
             Log.i("BLDO2","2   " + noticiaa.getTitulo());
 
