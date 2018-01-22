@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class Noticias_Classe implements Parcelable{
 
-    public int numero_de_noticias = 0;
+    public int numero_de_noticias;
     private int ID = 0;
     private String titulo = "Noticia";
     private String texto = "Bla bla bla bla bla...";

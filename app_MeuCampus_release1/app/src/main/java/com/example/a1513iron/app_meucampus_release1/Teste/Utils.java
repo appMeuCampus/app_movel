@@ -11,17 +11,17 @@ import org.json.JSONObject;
 public class Utils {
     private int index;
 
-    public Noticias_Classe getInformacao(String end, int i){
+    public Noticias_Classe getInformacaoNoticias(String end, int i){
         String json;
         this.index = i;
         Noticias_Classe retorno;
         json = NetworkUtils.getJSONFromAPI(end);
-        retorno = parseJson(json);
+        retorno = parseJsonNoticias(json);
 
         return retorno;
     }
 
-    private Noticias_Classe parseJson(String json){
+    private Noticias_Classe parseJsonNoticias(String json){
         try {
             Noticias_Classe noticiaa = new Noticias_Classe();
 
@@ -32,11 +32,16 @@ public class Utils {
             noticiaa.setTitulo(jsonObj.getJSONObject(index).getString("titulo"));
             noticiaa.numero_de_noticias = jsonObj.length();
 
+            if(jsonObj.getJSONObject(index).has("texto") == true)
+                noticiaa.setTexto(jsonObj.getJSONObject(index).getString("texto"));
+
+
             return noticiaa;
         }catch (JSONException e){
             e.printStackTrace();
             return null;
         }
     }
+
 
 }

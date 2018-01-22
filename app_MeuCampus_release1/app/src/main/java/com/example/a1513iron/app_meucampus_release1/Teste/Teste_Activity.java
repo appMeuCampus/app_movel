@@ -30,7 +30,7 @@ public class Teste_Activity extends AppCompatActivity {
         GetJSON_Classe teste = new GetJSON_Classe();
 
         try {
-            noticia = teste.BuscarNoticiaPorID(8);
+            noticia = teste.BuscarNoticiaPorIndex(0);
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

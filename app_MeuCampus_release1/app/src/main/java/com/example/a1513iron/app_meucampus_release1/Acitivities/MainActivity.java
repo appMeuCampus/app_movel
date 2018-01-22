@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.a1513iron.app_meucampus_release1.R;
+import com.example.a1513iron.app_meucampus_release1.Teste.GetJSON_Classe;
 import com.example.a1513iron.app_meucampus_release1.Teste.Teste_Activity;
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
 
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutionException;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -34,6 +36,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public Toolbar toolbar;
     public DrawerLayout drawerLayout;
     public NavigationView navigationView;
+    Noticias_Classe n1 = new Noticias_Classe();
+    Noticias_Classe n2 = new Noticias_Classe();
+    Noticias_Classe n3 = new Noticias_Classe();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,16 +52,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         List<Noticias_Classe> opcoes = new ArrayList<>();
         ArrayAdapter<Noticias_Classe> adaptador;
 
-        final Noticias_Classe n1 = new Noticias_Classe();
-        n1.setTitulo("Está aberto o período de SOLICITAÇÃO DA RENOVAÇÃO DE MATRÍCULA");
-        n1.setID(1);
-        final Noticias_Classe n2 = new Noticias_Classe();
-        n2.setTitulo("Alunos dos cursos de Licenciatura de Bambuí ganham prêmio no VI Encontro do PIBID IFMG");
-        n2.setID(2);
-        final Noticias_Classe n3 = new Noticias_Classe();
-        n3.setTitulo("Novo servidor passa a integrar a equipe do IFMG - Campus Bambuí");
-        n3.setID(3);
-
+        GetJSON_Classe aux = new GetJSON_Classe();
+        try {
+            n1 = aux.BuscarNoticiaPorIndex(0);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        aux = new GetJSON_Classe();
+        try {
+            n2 = aux.BuscarNoticiaPorIndex(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        aux = new GetJSON_Classe();
+        try {
+            n3 = aux.BuscarNoticiaPorIndex(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
         opcoes.add(n1);
         opcoes.add(n2);
         opcoes.add(n3);

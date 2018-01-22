@@ -1,14 +1,11 @@
 package com.example.a1513iron.app_meucampus_release1.Teste;
 
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.TextView;
 
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -17,23 +14,26 @@ import java.util.concurrent.ExecutionException;
 
 public class GetJSON_Classe extends AsyncTask<Void, Void, Noticias_Classe>{
 
-        public int numero_noticias = 0;
-        private int index = 0;
-        private int id = -1;
+        public int num_noticias;
+        private int index;
+        private int id;
         private String titulo;
+        private String texto;
+        String endereco = "http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias"; //por default o endereco vai ser esse pois estava craashando o app se deixasse vazio... mas isso não irá interferir nas demais funções da classe pois é umavariavel q muda toda x q um método de busca é chamado
 
     public GetJSON_Classe(int index) {
         this.index = index;
     }
 
     public GetJSON_Classe() {
+        this.index = 0;
 
     }
 
     @Override
         protected Noticias_Classe doInBackground(Void... params) {
             Utils util = new Utils();
-            return util.getInformacao("http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias", index);
+            return util.getInformacaoNoticias(endereco, index);
         }
 
         @Override
@@ -41,17 +41,30 @@ public class GetJSON_Classe extends AsyncTask<Void, Void, Noticias_Classe>{
 
             id = noticiaa.getID();
             titulo = noticiaa.getTitulo();
-            numero_noticias = noticiaa.numero_de_noticias;
+            num_noticias = noticiaa.numero_de_noticias;
+
+    }
+
+    public String BuscarTextodeNoticia(int id) throws ExecutionException, InterruptedException {
+
+        this.endereco = "http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticia?id=" + id;
+        this.execute();
+        Log.i("texto", "oieee" + this.get().getTexto());
+        this.setTexto(this.get().getTexto());
+
+        return this.getTexto();
     }
 
 
     public Noticias_Classe BuscarNoticiaPorID(int id) throws ExecutionException, InterruptedException {
 
-        GetJSON_Classe download = new GetJSON_Classe();
-        ArrayList<Noticias_Classe> aux = download.BuscarListaNoticias(4);
-        Noticias_Classe aux2 = new Noticias_Classe();
+        this.endereco = "http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias";
 
-        Log.i("oi", "porra" + aux.size());
+        GetJSON_Classe download = new GetJSON_Classe();
+        download.execute();
+
+        ArrayList<Noticias_Classe> aux = download.BuscarListaNoticias(download.get().numero_de_noticias);
+        Noticias_Classe aux2 = new Noticias_Classe();
 
 
         for(int i = 0;i < aux.size();i++){
@@ -66,6 +79,7 @@ public class GetJSON_Classe extends AsyncTask<Void, Void, Noticias_Classe>{
 
     public Noticias_Classe BuscarNoticiaPorIndex(int i) throws ExecutionException, InterruptedException {
 
+        this.endereco = "http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias";
         GetJSON_Classe download = new GetJSON_Classe(i);
         download.execute();
 
@@ -74,6 +88,7 @@ public class GetJSON_Classe extends AsyncTask<Void, Void, Noticias_Classe>{
 
     public ArrayList<Noticias_Classe> BuscarListaNoticias(int n) throws ExecutionException, InterruptedException {
 
+        this.endereco = "http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias";
         ArrayList<Noticias_Classe> lista_noticias = new ArrayList<>();
 
         for(int i = 0; i < n;i++){
@@ -108,6 +123,14 @@ public class GetJSON_Classe extends AsyncTask<Void, Void, Noticias_Classe>{
 
     public void setIndex(int index) {
         this.index = index;
+    }
+
+    public String getTexto() {
+        return texto;
+    }
+
+    public void setTexto(String texto) {
+        this.texto = texto;
     }
 }
 
