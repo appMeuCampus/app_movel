@@ -1,56 +1,44 @@
-package com.example.a1513iron.app_meucampus_release1.Acitivities;
+package com.example.a1513iron.app_meucampus_release1.Activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.a1513iron.app_meucampus_release1.R;
-import com.example.a1513iron.app_meucampus_release1.Teste.GetJSON_Classe;
 import com.example.a1513iron.app_meucampus_release1.Teste.Teste_Activity;
-import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
 
-import java.util.concurrent.ExecutionException;
-
-public class MostrarNoticiaActivity extends MainActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class SobreActivity extends MainActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mostrar_noticia);
-
+        setContentView(R.layout.activity_sobre);
         CreateDrawerLayout();
 
-        TextView tituloAtual = (TextView) findViewById(R.id.textviewTituloAtual);
-        TextView textoAtual = (TextView) findViewById(R.id.textviewTextoAtual);
-
-        //recuperando os dados passado da activity que chamou essa activity
-        Intent it = getIntent();
-        Noticias_Classe noticiaAtual = it.getParcelableExtra("Noticia");
-
-        if(noticiaAtual != null){
-                tituloAtual.setText(noticiaAtual.getTitulo());
-
-                GetJSON_Classe aux = new GetJSON_Classe();
-                String texto = "vazio";
-            try {
-                texto = aux.BuscarTextodeNoticia(noticiaAtual.getID());
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            textoAtual.setText(texto);
-
-        }else{
-            tituloAtual.setText("vazio");
-            textoAtual.setText("vazio");
-        }
-
+        TextView texto = (TextView) findViewById(R.id.sobre_texto);
+        texto.setText("Olá! Seja bem-vindo ao aplicativo do IFMG - Campus Bambuí!\n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "A proposta é que ele seja um novo meio de comunicação entre a Instituição e seus alunos, professores e funcionários. \n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "Você está utilizando a versão inicial do aplicativo, por isso apenas algumas funcionalidades estão disponíveis neste momento. Esperamos melhorá-lo continuamente, de maneira que ele se transforme em um novo meio de comunicação entre a Instituição e seus alunos, professores e funcionários, bem como ofereça acesso a serviços acadêmicos específicos.\n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "Qualquer dúvida, crítica, sugestão ou elogio que você quiser compartilhar com a equipe do projeto, basta enviar um e-mail para appmeucampus@ifmg.edu.br.\n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "Muito obrigado! ");
     }
 
     @Override
@@ -95,10 +83,21 @@ public class MostrarNoticiaActivity extends MainActivity implements NavigationVi
                 startActivity(intent);
                 break;
             }
+            case R.id.menu_sobre: {
+                Toast.makeText(this, "Menu Teste", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(getApplicationContext(), SobreActivity.class);
+                startActivity(intent);
+                break;
+            }
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);
 
         return true;
     }
+
+
+
+
 }

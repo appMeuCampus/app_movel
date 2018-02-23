@@ -15,8 +15,11 @@ public class Utils {
         String json;
         this.index = i;
         Noticias_Classe retorno;
+
         json = NetworkUtils.getJSONFromAPI(end);
+        Log.i("teste", json);
         retorno = parseJsonNoticias(json);
+        //Log.i("teste", retorno.getTitulo());
 
         return retorno;
     }

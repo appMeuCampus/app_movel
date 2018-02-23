@@ -3,7 +3,9 @@ package com.example.a1513iron.app_meucampus_release1.Teste;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.ProgressDialog;
+import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.a1513iron.app_meucampus_release1.R;
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
@@ -26,22 +28,22 @@ public class Teste_Activity extends AppCompatActivity {
 
         t_titulo = (TextView) findViewById(R.id.t_textView);
         t_id = (TextView) findViewById(R.id.t_textView2);
+        t_titulo.setText("Titulo");
+        t_id.setText("ID");
 
-        GetJSON_Classe teste = new GetJSON_Classe();
-
+       // load = ProgressDialog.show(this.getApplicationContext(), "Por favor Aguarde ...", "Recuperando Informações do Servidor...");
+        GetJSON_Classe teste = new GetJSON_Classe(this.getParent());
+        Noticias_Classe n1 = new Noticias_Classe();
         try {
-            noticia = teste.BuscarNoticiaPorIndex(0);
+            n1 = teste.BuscarNoticiaPorIndex(0);
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
-        t_id.setText(Integer.toString(noticia.getID()));
-        t_titulo.setText(noticia.getTitulo());
+        t_titulo.setText(n1.getTitulo());
+        t_id.setText(Integer.toString(n1.getID()));
 
     }
-
 }
 

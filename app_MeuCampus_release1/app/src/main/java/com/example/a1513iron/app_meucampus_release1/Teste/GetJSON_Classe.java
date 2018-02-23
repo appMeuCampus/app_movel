@@ -1,7 +1,10 @@
 package com.example.a1513iron.app_meucampus_release1.Teste;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import java.lang.Object;
 
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
 
@@ -14,6 +17,8 @@ import java.util.concurrent.ExecutionException;
 
 public class GetJSON_Classe extends AsyncTask<Void, Void, Noticias_Classe>{
 
+        private ProgressDialog load;
+        private  Context contextoAtual;
         public int num_noticias;
         private int index;
         private int id;
@@ -24,6 +29,9 @@ public class GetJSON_Classe extends AsyncTask<Void, Void, Noticias_Classe>{
     public GetJSON_Classe(int index) {
         this.index = index;
     }
+    public GetJSON_Classe(Context context) {
+        this.contextoAtual = context;
+    }
 
     public GetJSON_Classe() {
         this.index = 0;
@@ -31,9 +39,15 @@ public class GetJSON_Classe extends AsyncTask<Void, Void, Noticias_Classe>{
     }
 
     @Override
+    protected void onPreExecute() {
+        //load = ProgressDialog.show(this.contextoAtual, "Por favor Aguarde ...", "Recuperando Informações do Servidor...");
+    }
+
+    @Override
         protected Noticias_Classe doInBackground(Void... params) {
             Utils util = new Utils();
             return util.getInformacaoNoticias(endereco, index);
+
         }
 
         @Override
@@ -43,13 +57,31 @@ public class GetJSON_Classe extends AsyncTask<Void, Void, Noticias_Classe>{
             titulo = noticiaa.getTitulo();
             num_noticias = noticiaa.numero_de_noticias;
 
+        //load.dismiss();
+
     }
 
+    public int GetNumeroNoticias() throws ExecutionException, InterruptedException {
+        this.endereco = "http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias";
+        this.execute();
+        return this.get().numero_de_noticias;
+    }
+
+    public boolean ExisteIndex(int i) throws ExecutionException, InterruptedException {
+        this.endereco = "http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias";
+
+        Log.i("teste", i + "< " + this.get().numero_de_noticias);
+        if(i < this.get().numero_de_noticias) {
+            return true;
+        }else{
+            return false;
+        }
+
+    }
     public String BuscarTextodeNoticia(int id) throws ExecutionException, InterruptedException {
 
         this.endereco = "http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticia?id=" + id;
         this.execute();
-        Log.i("texto", "oieee" + this.get().getTexto());
         this.setTexto(this.get().getTexto());
 
         return this.getTexto();
@@ -59,31 +91,26 @@ public class GetJSON_Classe extends AsyncTask<Void, Void, Noticias_Classe>{
     public Noticias_Classe BuscarNoticiaPorID(int id) throws ExecutionException, InterruptedException {
 
         this.endereco = "http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias";
+        this.execute();
 
-        GetJSON_Classe download = new GetJSON_Classe();
-        download.execute();
-
-        ArrayList<Noticias_Classe> aux = download.BuscarListaNoticias(download.get().numero_de_noticias);
+        ArrayList<Noticias_Classe> aux = this.BuscarListaNoticias(this.get().numero_de_noticias);
         Noticias_Classe aux2 = new Noticias_Classe();
 
-
         for(int i = 0;i < aux.size();i++){
-            Log.i("aux","aux[" + i + "] = " + aux.get(i).getID());
             if(aux.get(i).getID() == id){
                 aux2 = aux.get(i);
             }
         }
             return aux2;
-
     }
 
     public Noticias_Classe BuscarNoticiaPorIndex(int i) throws ExecutionException, InterruptedException {
 
         this.endereco = "http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias";
-        GetJSON_Classe download = new GetJSON_Classe(i);
-        download.execute();
+        this.index = i;
+        this.execute();
 
-        return download.get();
+        return this.get();
     }
 
     public ArrayList<Noticias_Classe> BuscarListaNoticias(int n) throws ExecutionException, InterruptedException {

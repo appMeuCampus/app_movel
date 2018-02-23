@@ -1,4 +1,4 @@
-package com.example.a1513iron.app_meucampus_release1.Acitivities;
+package com.example.a1513iron.app_meucampus_release1.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ArrayAdapter<Noticias_Classe> adaptador;
 
         GetJSON_Classe aux = new GetJSON_Classe();
-        try {
+        /*try {
             n1 = aux.BuscarNoticiaPorIndex(0);
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
-        }
+        }*/
         opcoes.add(n1);
         opcoes.add(n2);
         opcoes.add(n3);
@@ -181,6 +181,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "Menu Teste", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getApplicationContext(), Teste_Activity.class);
+                startActivity(intent);
+                break;
+            }
+            case R.id.menu_sobre: {
+                Toast.makeText(this, "Menu Teste", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(getApplicationContext(), SobreActivity.class);
                 startActivity(intent);
                 break;
             }

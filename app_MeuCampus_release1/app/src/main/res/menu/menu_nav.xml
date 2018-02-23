@@ -26,6 +26,9 @@
         <item android:title="Teste"
             android:id="@+id/menu_teste"
             android:icon="@drawable/ic_teste"/>
+        <item android:title="Sobre"
+            android:id="@+id/menu_sobre"
+            android:icon="@drawable/ic_sobre"/>
 
     </group>
 

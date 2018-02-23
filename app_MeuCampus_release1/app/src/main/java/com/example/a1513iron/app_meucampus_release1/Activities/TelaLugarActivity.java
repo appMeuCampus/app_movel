@@ -1,4 +1,4 @@
-package com.example.a1513iron.app_meucampus_release1.Acitivities;
+package com.example.a1513iron.app_meucampus_release1.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

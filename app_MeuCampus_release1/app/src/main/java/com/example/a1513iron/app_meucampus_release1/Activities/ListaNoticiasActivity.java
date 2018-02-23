@@ -1,5 +1,6 @@
-package com.example.a1513iron.app_meucampus_release1.Acitivities;
+package com.example.a1513iron.app_meucampus_release1.Activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -13,13 +14,16 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.a1513iron.app_meucampus_release1.R;
+import com.example.a1513iron.app_meucampus_release1.Teste.GetJSON_Classe;
 import com.example.a1513iron.app_meucampus_release1.Teste.Teste_Activity;
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class ListaNoticiasActivity extends MainActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    ArrayList<Noticias_Classe> noticia = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,36 +34,36 @@ public class ListaNoticiasActivity extends MainActivity implements NavigationVie
 
         //listview
         ListView listview2 = (ListView) findViewById(R.id.listview2);
-        List<Noticias_Classe> opcoes = new ArrayList<>();
         ArrayAdapter<Noticias_Classe> adaptador;
+        GetJSON_Classe aux = new GetJSON_Classe();
 
-        final Noticias_Classe n1 = new Noticias_Classe();
-        n1.setTitulo("Está aberto o período de SOLICITAÇÃO DA RENOVAÇÃO DE MATRÍCULA");
-        n1.setID(1);
-        final Noticias_Classe n2 = new Noticias_Classe();
-        n2.setTitulo("Alunos dos cursos de Licenciatura de Bambuí ganham prêmio no VI Encontro do PIBID IFMG");
-        n2.setID(2);
-        final Noticias_Classe n3 = new Noticias_Classe();
-        n3.setTitulo("Novo servidor passa a integrar a equipe do IFMG - Campus Bambuí");
-        n3.setID(3);
-        final Noticias_Classe n4 = new Noticias_Classe();
-        n4.setTitulo("Resultado Preliminar do Processo Seletivo 2018 de alunos regulares do MPSTA");
-        n4.setID(4);
-        final Noticias_Classe n5 = new Noticias_Classe();
-        n5.setTitulo("Alunos do curso de Engenharia de Computação desenvolvem projeto junto à empresa da cidade de Bambuí");
-        n5.setID(5);
-        final Noticias_Classe n6 = new Noticias_Classe();
-        n6.setTitulo("Plantio de árvore simboliza formatura janeiro/2017 dos Cursos Técnicos Integrados - Campus Bambuí");
-        n6.setID(6);
 
-        opcoes.add(n1);
-        opcoes.add(n2);
-        opcoes.add(n3);
-        opcoes.add(n4);
-        opcoes.add(n5);
-        opcoes.add(n6);
+        try {
+            int numeroNoticias = aux.GetNumeroNoticias();
+            aux = new GetJSON_Classe();
+            if(numeroNoticias < 6){
+                Context context = getApplicationContext();
+                CharSequence text = "numero de noticias menor que o esperado";
+                int duration = Toast.LENGTH_SHORT;
 
-        adaptador = new ArrayAdapter<>(ListaNoticiasActivity.this, android.R.layout.simple_list_item_1,opcoes);
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);
+            }
+
+            for(int i = 0; i < 6; i++){
+                    noticia.add(aux.BuscarNoticiaPorIndex(i));
+
+                aux = new GetJSON_Classe();
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        adaptador = new ArrayAdapter<>(ListaNoticiasActivity.this, android.R.layout.simple_list_item_1,noticia);
         listview2.setAdapter(adaptador);
 
         listview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -68,32 +72,32 @@ public class ListaNoticiasActivity extends MainActivity implements NavigationVie
                 switch (position){
                     case 0:
                         Intent intent = new Intent(getApplicationContext(), MostrarNoticiaActivity.class);
-                        intent.putExtra("Noticia", n1);
+                        intent.putExtra("Noticia", noticia.get(0));
                         startActivity(intent);
                         break;
                     case 1:
                         intent = new Intent(getApplicationContext(), MostrarNoticiaActivity.class);
-                        intent.putExtra("Noticia", n2);
+                        intent.putExtra("Noticia", noticia.get(1));
                         startActivity(intent);
                         break;
                     case 2:
                         intent = new Intent(getApplicationContext(), MostrarNoticiaActivity.class);
-                        intent.putExtra("Noticia", n3);
+                        intent.putExtra("Noticia", noticia.get(2));
                         startActivity(intent);
                         break;
                     case 3:
                         intent = new Intent(getApplicationContext(), MostrarNoticiaActivity.class);
-                        intent.putExtra("Noticia", n4);
+                        intent.putExtra("Noticia", noticia.get(3));
                         startActivity(intent);
                         break;
                     case 4:
                         intent = new Intent(getApplicationContext(), MostrarNoticiaActivity.class);
-                        intent.putExtra("Noticia", n5);
+                        intent.putExtra("Noticia", noticia.get(4));
                         startActivity(intent);
                         break;
                     case 5:
                         intent = new Intent(getApplicationContext(), MostrarNoticiaActivity.class);
-                        intent.putExtra("Noticia", n6);
+                        intent.putExtra("Noticia", noticia.get(5));
                         startActivity(intent);
                         break;
                 }
@@ -141,6 +145,13 @@ public class ListaNoticiasActivity extends MainActivity implements NavigationVie
                 Toast.makeText(this, "Menu Teste", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getApplicationContext(), Teste_Activity.class);
+                startActivity(intent);
+                break;
+            }
+            case R.id.menu_sobre: {
+                Toast.makeText(this, "Menu Teste", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(getApplicationContext(), SobreActivity.class);
                 startActivity(intent);
                 break;
             }

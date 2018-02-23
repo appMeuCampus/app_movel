@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
-    tools:context="com.example.a1513iron.app_meucampus_release1.Acitivities.TelaLugarActivity">
+    tools:context="com.example.a1513iron.app_meucampus_release1.Activities.TelaLugarActivity">
 
     <TextView
         android:id="@+id/textView2"

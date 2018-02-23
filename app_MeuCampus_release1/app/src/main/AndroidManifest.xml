@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MaterialThemeIFMG">
-        <activity android:name=".Acitivities.MainActivity">
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,13 +37,14 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".Acitivities.MapsActivity"
+            android:name=".Activities.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".Acitivities.TelaLugarActivity" />
-        <activity android:name=".Acitivities.MostrarNoticiaActivity" />
-        <activity android:name=".Acitivities.ListaNoticiasActivity" />
+        <activity android:name=".Activities.TelaLugarActivity" />
+        <activity android:name=".Activities.MostrarNoticiaActivity" />
+        <activity android:name=".Activities.ListaNoticiasActivity" />
         <activity android:name=".Teste.Teste_Activity" />
-        <activity android:name=".Acitivities.CardapioActivity"></activity>
+        <activity android:name=".Activities.CardapioActivity" />
+        <activity android:name=".Activities.SobreActivity"></activity>
     </application>
 
 </manifest>

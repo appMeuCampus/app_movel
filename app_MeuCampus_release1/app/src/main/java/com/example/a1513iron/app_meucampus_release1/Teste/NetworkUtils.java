@@ -1,5 +1,7 @@
 package com.example.a1513iron.app_meucampus_release1.Teste;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,7 +25,15 @@ public class NetworkUtils {
             conexao.setRequestMethod("GET");
             conexao.setReadTimeout(15000);
             conexao.setConnectTimeout(15000);
-            conexao.connect();
+            try {
+                conexao.connect();
+            }catch(java.net.SocketTimeoutException e){
+                System.err.println("erro de conexão com o servidor");
+                conexao.disconnect();
+                retorno  = "[{\"id\":\"-1\",\"titulo\":\"Sem conexão com o servidor!\"}]";
+                return retorno;
+
+            }
 
             codigoResposta = conexao.getResponseCode();
             if (codigoResposta < HttpURLConnection.HTTP_BAD_REQUEST) {
