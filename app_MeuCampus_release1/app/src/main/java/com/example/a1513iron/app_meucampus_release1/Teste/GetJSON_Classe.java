@@ -46,7 +46,8 @@ public class GetJSON_Classe extends AsyncTask<Void, Void, Noticias_Classe>{
     @Override
         protected Noticias_Classe doInBackground(Void... params) {
             Utils util = new Utils();
-            return util.getInformacaoNoticias(endereco, index);
+            //return util.getInformacaoNoticias(endereco, index);
+        return new Noticias_Classe();
 
         }
 

@@ -1,15 +1,18 @@
 package com.example.a1513iron.app_meucampus_release1.Teste;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.ProgressDialog;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.a1513iron.app_meucampus_release1.R;
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
 
+import org.json.JSONException;
+
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
@@ -17,9 +20,6 @@ public class Teste_Activity extends AppCompatActivity {
 
     private  TextView t_id;
     private  TextView t_titulo;
-    public Noticias_Classe noticia = new Noticias_Classe();
-
-    private ProgressDialog load;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,19 +31,56 @@ public class Teste_Activity extends AppCompatActivity {
         t_titulo.setText("Titulo");
         t_id.setText("ID");
 
-       // load = ProgressDialog.show(this.getApplicationContext(), "Por favor Aguarde ...", "Recuperando Informações do Servidor...");
-        GetJSON_Classe teste = new GetJSON_Classe(this.getParent());
-        Noticias_Classe n1 = new Noticias_Classe();
-        try {
-            n1 = teste.BuscarNoticiaPorIndex(0);
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        t_titulo.setText(n1.getTitulo());
-        t_id.setText(Integer.toString(n1.getID()));
+        RecuperaDados teste = new RecuperaDados("http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias","BuscarPorIndex",1);
+        teste.execute();
 
     }
-}
+    public class RecuperaDados extends AsyncTask<Void, Void, Noticias_Classe> {
 
+        private ProgressDialog load;
+        private int num;
+        String operacao;
+        String endereco; //"http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias"
+                        // por default o endereco vai ser esse pois estava craashando o app se deixasse vazio...
+                        // mas isso não irá interferir nas demais funções da classe pois é umavariavel q muda toda x q um método de busca é chamado
+
+
+        public RecuperaDados(String url, String operacao,int num){
+            this.endereco = url;
+            this.operacao = operacao;
+            this.num = num;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            load = ProgressDialog.show(Teste_Activity.this, "Por favor Aguarde ...", "Recuperando Informações do Servidor...");
+        }
+
+        @Override
+        protected Noticias_Classe doInBackground(Void... params) {
+            Utils util = new Utils();
+            try {
+                return util.getInformacaoNoticias(endereco,operacao, num);
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Noticias_Classe noticia = new Noticias_Classe();
+                noticia.setTitulo("Erro na conexão com o servidor!");
+                noticia.setID(-3);
+                return noticia;
+            }
+
+        }
+
+        @Override
+        protected void onPostExecute(Noticias_Classe noticiaa) {
+
+            t_titulo.setText(noticiaa.getTitulo());
+            t_id.setText(Integer.toString(noticiaa.getID()));
+
+            load.dismiss();
+
+        }
+
+    }
+
+}

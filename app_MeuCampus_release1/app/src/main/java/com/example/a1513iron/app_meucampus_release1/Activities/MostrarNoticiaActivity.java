@@ -1,11 +1,14 @@
 package com.example.a1513iron.app_meucampus_release1.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,14 +16,22 @@ import android.widget.Toast;
 import com.example.a1513iron.app_meucampus_release1.R;
 import com.example.a1513iron.app_meucampus_release1.Teste.GetJSON_Classe;
 import com.example.a1513iron.app_meucampus_release1.Teste.Teste_Activity;
+import com.example.a1513iron.app_meucampus_release1.Teste.Utils;
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
 import com.example.a1513iron.app_meucampus_release1.classes.URLImageParser;
+
+import org.json.JSONException;
 
 import java.util.concurrent.ExecutionException;
 
 import static android.text.Html.fromHtml;
 
 public class MostrarNoticiaActivity extends MainActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private String texto = "vazio";
+    private TextView tituloAtual;
+    private TextView textoAtual;
+    private Noticias_Classe noticiaAtual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,34 +40,17 @@ public class MostrarNoticiaActivity extends MainActivity implements NavigationVi
 
         CreateDrawerLayout();
 
-        TextView tituloAtual = (TextView) findViewById(R.id.textviewTituloAtual);
-        TextView textoAtual = (TextView) findViewById(R.id.textviewTextoAtual);
+        tituloAtual = (TextView) findViewById(R.id.textviewTituloAtual);
+        textoAtual = (TextView) findViewById(R.id.textviewTextoAtual);
 
         //recuperando os dados passado da activity que chamou essa activity
         Intent it = getIntent();
-        Noticias_Classe noticiaAtual = it.getParcelableExtra("Noticia");
+        noticiaAtual = it.getParcelableExtra("Noticia");
+        RecuperaDados rcd = new RecuperaDados("http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticia?id=","BuscarTexto",noticiaAtual.getID());
+        rcd.execute();
 
-        if(noticiaAtual != null){
-                tituloAtual.setText(noticiaAtual.getTitulo());
 
-                GetJSON_Classe aux = new GetJSON_Classe();
-                String texto = "vazio";
-            try {
-                texto = aux.BuscarTextodeNoticia(noticiaAtual.getID());
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
 
-            //Spanned sp = Html.fromHtml(texto);
-            //textoAtual.setText(sp);
-            textoAtual.setText(Html.fromHtml(texto,new URLImageParser(textoAtual, this), null));
-
-        }else{
-            tituloAtual.setText("vazio");
-            textoAtual.setText("vazio");
-        }
 
     }
 
@@ -114,5 +108,57 @@ public class MostrarNoticiaActivity extends MainActivity implements NavigationVi
         drawerLayout.closeDrawer(GravityCompat.START);
 
         return true;
+    }
+    public class RecuperaDados extends AsyncTask<Void, Void, Noticias_Classe> {
+
+        private ProgressDialog load;
+        private int num;
+        String operacao;
+        String endereco; //"http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias"
+        // por default o endereco vai ser esse pois estava craashando o app se deixasse vazio...
+        // mas isso não irá interferir nas demais funções da classe pois é umavariavel q muda toda x q um método de busca é chamado
+
+
+        public RecuperaDados(String url, String operacao,int num){
+            this.endereco = url;
+            this.operacao = operacao;
+            this.num = num;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            load = ProgressDialog.show(MostrarNoticiaActivity.this, "Por favor Aguarde ...", "Recuperando Informações do Servidor...");
+        }
+
+        @Override
+        protected Noticias_Classe doInBackground(Void... params) {
+            Utils util = new Utils();
+            try {
+                return util.getInformacaoNoticias(endereco,operacao, num);
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Noticias_Classe noticia = new Noticias_Classe();
+                noticia.setTitulo("Erro na conexão com o servidor!");
+                noticia.setID(-3);
+                return noticia;
+            }
+
+        }
+
+        @Override
+        protected void onPostExecute(Noticias_Classe noticiaa) {
+
+            Log.i("TEXTO",noticiaa.getTexto());
+            texto = noticiaa.getTexto();
+            tituloAtual.setText(noticiaAtual.getTitulo());
+            //Spanned sp = Html.fromHtml(texto);
+            //textoAtual.setText(sp);
+            textoAtual.setText(Html.fromHtml(texto,new URLImageParser(textoAtual, getApplicationContext()), null));
+
+
+            load.dismiss();
+
+        }
+
     }
 }

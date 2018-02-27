@@ -1,6 +1,8 @@
 package com.example.a1513iron.app_meucampus_release1.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -9,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,9 +21,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.a1513iron.app_meucampus_release1.R;
-import com.example.a1513iron.app_meucampus_release1.Teste.GetJSON_Classe;
 import com.example.a1513iron.app_meucampus_release1.Teste.Teste_Activity;
+import com.example.a1513iron.app_meucampus_release1.Teste.Utils;
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
+
+import org.json.JSONException;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -36,9 +41,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public Toolbar toolbar;
     public DrawerLayout drawerLayout;
     public NavigationView navigationView;
-    Noticias_Classe n1 = new Noticias_Classe();
-    Noticias_Classe n2 = new Noticias_Classe();
-    Noticias_Classe n3 = new Noticias_Classe();
+    public Noticias_Classe ntc = new Noticias_Classe();
+    private ListView listview1;
+    private List<Noticias_Classe> opcoes;
+    private ArrayAdapter<Noticias_Classe> adaptador;
+    private  RecuperaDados recd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,37 +55,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         CreateDrawerLayout();
 
         //lista de noticias
-        ListView listview1 = (ListView) findViewById(R.id.listview1);
-        List<Noticias_Classe> opcoes = new ArrayList<>();
-        ArrayAdapter<Noticias_Classe> adaptador;
+        listview1 = (ListView) findViewById(R.id.listview1);
+        opcoes = new ArrayList<>();
 
-        GetJSON_Classe aux = new GetJSON_Classe();
-        /*try {
-            n1 = aux.BuscarNoticiaPorIndex(0);
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        for(int i = 0; i < 3; i++) {
+            recd = new RecuperaDados("http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias", "BuscarPorIndex", i);
+            recd.execute();
         }
-        aux = new GetJSON_Classe();
-        try {
-            n2 = aux.BuscarNoticiaPorIndex(1);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        aux = new GetJSON_Classe();
-        try {
-            n3 = aux.BuscarNoticiaPorIndex(2);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }*/
-        opcoes.add(n1);
-        opcoes.add(n2);
-        opcoes.add(n3);
 
         adaptador = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1,opcoes);
         listview1.setAdapter(adaptador);
@@ -89,17 +72,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 switch (position){
                     case 0:
                         Intent intent = new Intent(getApplicationContext(), MostrarNoticiaActivity.class);
-                        intent.putExtra("Noticia", n1);
+                        Log.i("iddddd",Integer.toString(opcoes.get(0).getID()));
+                        intent.putExtra("Noticia", opcoes.get(0));
                         startActivity(intent);
                         break;
                     case 1:
                         intent = new Intent(getApplicationContext(), MostrarNoticiaActivity.class);
-                        intent.putExtra("Noticia", n2);
+                        intent.putExtra("Noticia", opcoes.get(1));
                         startActivity(intent);
                         break;
                     case 2:
                         intent = new Intent(getApplicationContext(), MostrarNoticiaActivity.class);
-                        intent.putExtra("Noticia", n3);
+                        intent.putExtra("Noticia", opcoes.get(2));
                         startActivity(intent);
                         break;
                 }
@@ -196,5 +180,52 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.closeDrawer(GravityCompat.START);
 
         return true;
+    }
+    public class RecuperaDados extends AsyncTask<Void, Void, Noticias_Classe> {
+
+        private ProgressDialog load;
+        private int num;
+        public String titulo;
+        public int id;
+        String operacao;
+        String endereco; //"http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias"
+        // por default o endereco vai ser esse pois estava craashando o app se deixasse vazio...
+        // mas isso não irá interferir nas demais funções da classe pois é umavariavel q muda toda x q um método de busca é chamado
+
+
+        public RecuperaDados(String url, String operacao,int num){
+            this.endereco = url;
+            this.operacao = operacao;
+            this.num = num;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            load = ProgressDialog.show(MainActivity.this, "Por favor Aguarde ...", "Recuperando Informações do Servidor...");
+        }
+
+        @Override
+        protected Noticias_Classe doInBackground(Void... params) {
+            Utils util = new Utils();
+            try {
+                return util.getInformacaoNoticias(endereco,operacao, num);
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Noticias_Classe noticia = new Noticias_Classe();
+                noticia.setTitulo("Erro na conexão com o servidor!");
+                noticia.setID(-3);
+                return noticia;
+            }
+
+        }
+
+        @Override
+        protected void onPostExecute(Noticias_Classe noticiaa) {
+
+            opcoes.add(noticiaa);
+            load.dismiss();
+
+        }
+
     }
 }
