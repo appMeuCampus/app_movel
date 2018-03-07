@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             recd.execute();
         }
 
+
         adaptador = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1,opcoes);
         listview1.setAdapter(adaptador);
 

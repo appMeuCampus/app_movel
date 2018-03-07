@@ -40,10 +40,7 @@ public class Teste_Activity extends AppCompatActivity {
         private ProgressDialog load;
         private int num;
         String operacao;
-        String endereco; //"http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias"
-                        // por default o endereco vai ser esse pois estava craashando o app se deixasse vazio...
-                        // mas isso não irá interferir nas demais funções da classe pois é umavariavel q muda toda x q um método de busca é chamado
-
+        String endereco;
 
         public RecuperaDados(String url, String operacao,int num){
             this.endereco = url;

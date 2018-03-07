@@ -23,8 +23,8 @@ public class NetworkUtils {
 
             conexao = (HttpURLConnection) apiEnd.openConnection();
             conexao.setRequestMethod("GET");
-            conexao.setReadTimeout(15000);
-            conexao.setConnectTimeout(15000);
+            conexao.setReadTimeout(5000);
+            conexao.setConnectTimeout(5000);
             try {
                 conexao.connect();
             }catch(java.net.SocketTimeoutException e){
