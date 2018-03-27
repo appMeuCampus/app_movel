@@ -17,16 +17,18 @@ import com.example.a1513iron.app_meucampus_release1.R;
 import com.example.a1513iron.app_meucampus_release1.Teste.GetJSON_Classe;
 import com.example.a1513iron.app_meucampus_release1.Teste.Teste_Activity;
 import com.example.a1513iron.app_meucampus_release1.Teste.Utils;
+import com.example.a1513iron.app_meucampus_release1.classes.Noticia;
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
 import com.example.a1513iron.app_meucampus_release1.classes.URLImageParser;
 
 import org.json.JSONException;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import static android.text.Html.fromHtml;
 
-public class MostrarNoticiaActivity extends MainActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MostrarNoticiaActivity extends SobreActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private String texto = "vazio";
     private TextView tituloAtual;
@@ -109,7 +111,8 @@ public class MostrarNoticiaActivity extends MainActivity implements NavigationVi
 
         return true;
     }
-    public class RecuperaDados extends AsyncTask<Void, Void, Noticias_Classe> {
+
+    public class RecuperaDados extends AsyncTask<Void, Void, ArrayList<Noticias_Classe>> {
 
         private ProgressDialog load;
         private int num;
@@ -131,7 +134,7 @@ public class MostrarNoticiaActivity extends MainActivity implements NavigationVi
         }
 
         @Override
-        protected Noticias_Classe doInBackground(Void... params) {
+        protected ArrayList<Noticias_Classe> doInBackground(Void... params) {
             Utils util = new Utils();
             try {
                 return util.getInformacaoNoticias(endereco,operacao, num);
@@ -140,16 +143,18 @@ public class MostrarNoticiaActivity extends MainActivity implements NavigationVi
                 Noticias_Classe noticia = new Noticias_Classe();
                 noticia.setTitulo("Erro na conexão com o servidor!");
                 noticia.setID(-3);
-                return noticia;
+                noticia.setTexto("Texto não buscado no servidor");
+                ArrayList<Noticias_Classe> listaNoticias = new ArrayList<Noticias_Classe>();
+                listaNoticias.add(noticia);
+                return listaNoticias;
             }
 
         }
 
         @Override
-        protected void onPostExecute(Noticias_Classe noticiaa) {
+        protected void onPostExecute(ArrayList<Noticias_Classe> listaNoticias) {
 
-            Log.i("TEXTO",noticiaa.getTexto());
-            texto = noticiaa.getTexto();
+            texto = listaNoticias.get(0).getTexto();
             tituloAtual.setText(noticiaAtual.getTitulo());
             //Spanned sp = Html.fromHtml(texto);
             //textoAtual.setText(sp);

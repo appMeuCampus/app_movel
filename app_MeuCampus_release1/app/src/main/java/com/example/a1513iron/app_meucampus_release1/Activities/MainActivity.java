@@ -2,6 +2,7 @@ package com.example.a1513iron.app_meucampus_release1.Activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Region;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.a1513iron.app_meucampus_release1.R;
+import com.example.a1513iron.app_meucampus_release1.Teste.NoticiaHttp;
 import com.example.a1513iron.app_meucampus_release1.Teste.Teste_Activity;
 import com.example.a1513iron.app_meucampus_release1.Teste.Utils;
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
@@ -36,16 +38,14 @@ import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends SobreActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    public Toolbar toolbar;
-    public DrawerLayout drawerLayout;
-    public NavigationView navigationView;
     public Noticias_Classe ntc = new Noticias_Classe();
     private ListView listview1;
     private List<Noticias_Classe> opcoes;
     private ArrayAdapter<Noticias_Classe> adaptador;
     private  RecuperaDados recd;
+    public static final String URL_ACT = "http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,73 +58,46 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         listview1 = (ListView) findViewById(R.id.listview1);
         opcoes = new ArrayList<>();
 
-        for(int i = 0; i < 3; i++) {
-            recd = new RecuperaDados("http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias", "BuscarPorIndex", i);
-            recd.execute();
-        }
+        recd = new RecuperaDados(URL_ACT, "BuscarPorIndex",0);
+        recd.execute();
 
+            adaptador = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, opcoes);
+            listview1.setAdapter(adaptador);
 
-        adaptador = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1,opcoes);
-        listview1.setAdapter(adaptador);
-
-        listview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
-                    case 0:
-                        Intent intent = new Intent(getApplicationContext(), MostrarNoticiaActivity.class);
-                        Log.i("iddddd",Integer.toString(opcoes.get(0).getID()));
-                        intent.putExtra("Noticia", opcoes.get(0));
-                        startActivity(intent);
-                        break;
-                    case 1:
-                        intent = new Intent(getApplicationContext(), MostrarNoticiaActivity.class);
-                        intent.putExtra("Noticia", opcoes.get(1));
-                        startActivity(intent);
-                        break;
-                    case 2:
-                        intent = new Intent(getApplicationContext(), MostrarNoticiaActivity.class);
-                        intent.putExtra("Noticia", opcoes.get(2));
-                        startActivity(intent);
-                        break;
+            listview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    switch (position) {
+                        case 0:
+                            Intent intent = new Intent(getApplicationContext(), MostrarNoticiaActivity.class);
+                            Log.i("iddddd", Integer.toString(opcoes.get(0).getID()));
+                            intent.putExtra("Noticia", opcoes.get(0));
+                            startActivity(intent);
+                            break;
+                        case 1:
+                            intent = new Intent(getApplicationContext(), MostrarNoticiaActivity.class);
+                            intent.putExtra("Noticia", opcoes.get(1));
+                            startActivity(intent);
+                            break;
+                        case 2:
+                            intent = new Intent(getApplicationContext(), MostrarNoticiaActivity.class);
+                            intent.putExtra("Noticia", opcoes.get(2));
+                            startActivity(intent);
+                            break;
+                    }
                 }
-            }
-        });
-        //cardview do cardapio, pegando o dia da semana
-        TextView diaSemana = (TextView) findViewById(R.id.dia_da_semana);
-        Locale local = new Locale("pt", "BR");
-        DateFormat df = new SimpleDateFormat("EEEE", local);
-        Date d = new Date();
-        diaSemana.setText(df.format(d));
+            });
+            //cardview do cardapio, pegando o dia da semana
+            TextView diaSemana = (TextView) findViewById(R.id.dia_da_semana);
+            Locale local = new Locale("pt", "BR");
+            DateFormat df = new SimpleDateFormat("EEEE", local);
+            Date d = new Date();
+            diaSemana.setText(df.format(d));
+
 
     }
 
-    public void CreateDrawerLayout(){
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open_drawer,R.string.cloe_drawer);
-        drawerLayout.addDrawerListener(toggle);
-
-        toggle.syncState();
-
-        navigationView = (NavigationView) findViewById(R.id.navigationView);
-        navigationView.setNavigationItemSelectedListener(this);
-
-    }
-
-    //botao de voltar não fecha o app
-    @Override
-    public void onBackPressed() {
-
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }else{
-            super.onBackPressed();
-        }
-    }
 
     //maquina de estados dos menus do drawerLayout
     @Override
@@ -182,7 +155,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         return true;
     }
-    public class RecuperaDados extends AsyncTask<Void, Void, Noticias_Classe> {
+
+
+    public class RecuperaDados extends AsyncTask<Void, Void, ArrayList<Noticias_Classe>> {
 
         private ProgressDialog load;
         private int num;
@@ -190,9 +165,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         public int id;
         String operacao;
         String endereco; //"http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias"
-        // por default o endereco vai ser esse pois estava craashando o app se deixasse vazio...
-        // mas isso não irá interferir nas demais funções da classe pois é umavariavel q muda toda x q um método de busca é chamado
-
 
         public RecuperaDados(String url, String operacao,int num){
             this.endereco = url;
@@ -206,25 +178,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         @Override
-        protected Noticias_Classe doInBackground(Void... params) {
+        protected ArrayList<Noticias_Classe> doInBackground(Void... params) {
             Utils util = new Utils();
             try {
                 return util.getInformacaoNoticias(endereco,operacao, num);
             } catch (JSONException e) {
                 e.printStackTrace();
+                ArrayList<Noticias_Classe> listaNoticias = new ArrayList<Noticias_Classe>();
                 Noticias_Classe noticia = new Noticias_Classe();
                 noticia.setTitulo("Erro na conexão com o servidor!");
                 noticia.setID(-3);
-                return noticia;
+                listaNoticias.add(noticia);
+                return listaNoticias;
             }
 
         }
 
         @Override
-        protected void onPostExecute(Noticias_Classe noticiaa) {
+        protected void onPostExecute(ArrayList<Noticias_Classe> listaNoticias) {
 
-            opcoes.add(noticiaa);
+            if(listaNoticias.size() > 1) {
+                opcoes.add(listaNoticias.get(0));
+                opcoes.add(listaNoticias.get(1));
+                opcoes.add(listaNoticias.get(2));
+            }else{
+                opcoes.add(listaNoticias.get(0));
+                opcoes.add(listaNoticias.get(0));
+                opcoes.add(listaNoticias.get(0));
+            }
             load.dismiss();
+            recd = null;
 
         }
 

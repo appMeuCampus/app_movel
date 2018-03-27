@@ -19,6 +19,7 @@ import com.example.a1513iron.app_meucampus_release1.R;
 import com.example.a1513iron.app_meucampus_release1.Teste.GetJSON_Classe;
 import com.example.a1513iron.app_meucampus_release1.Teste.Teste_Activity;
 import com.example.a1513iron.app_meucampus_release1.Teste.Utils;
+import com.example.a1513iron.app_meucampus_release1.classes.Noticia;
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
 
 import org.json.JSONException;
@@ -26,12 +27,13 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-public class ListaNoticiasActivity extends MainActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class ListaNoticiasActivity extends SobreActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ArrayList<Noticias_Classe> opcoes;
     private ArrayAdapter<Noticias_Classe> adaptador;
     private ListView listview2;
     private RecuperaDados recd;
+    public static final String URL_ACT = "http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +44,9 @@ public class ListaNoticiasActivity extends MainActivity implements NavigationVie
 
         listview2 = (ListView) findViewById(R.id.listview2);
         opcoes =  new ArrayList<>();
+        recd = new RecuperaDados(URL_ACT, "BuscarPorIndex",0);
+        recd.execute();
 
-
-        for(int i = 0; i < 9; i++) {
-            recd = new RecuperaDados("http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias", "BuscarPorIndex", i);
-            recd.execute();
-        }
 
         adaptador = new ArrayAdapter<>(ListaNoticiasActivity.this, android.R.layout.simple_list_item_1,opcoes);
         listview2.setAdapter(adaptador);
@@ -147,7 +146,7 @@ public class ListaNoticiasActivity extends MainActivity implements NavigationVie
 
         return true;
     }
-    public class RecuperaDados extends AsyncTask<Void, Void, Noticias_Classe> {
+    public class RecuperaDados extends AsyncTask<Void, Void, ArrayList<Noticias_Classe>> {
 
         private ProgressDialog load;
         private int num;
@@ -171,7 +170,7 @@ public class ListaNoticiasActivity extends MainActivity implements NavigationVie
         }
 
         @Override
-        protected Noticias_Classe doInBackground(Void... params) {
+        protected ArrayList<Noticias_Classe> doInBackground(Void... params) {
             Utils util = new Utils();
             try {
                 return util.getInformacaoNoticias(endereco,operacao, num);
@@ -180,15 +179,18 @@ public class ListaNoticiasActivity extends MainActivity implements NavigationVie
                 Noticias_Classe noticia = new Noticias_Classe();
                 noticia.setTitulo("Erro na conexão com o servidor!");
                 noticia.setID(-3);
-                return noticia;
+                ArrayList<Noticias_Classe> listaNoticias = new ArrayList<Noticias_Classe>();
+                return listaNoticias;
             }
 
         }
 
         @Override
-        protected void onPostExecute(Noticias_Classe noticiaa) {
+        protected void onPostExecute(ArrayList<Noticias_Classe> listaNoticias) {
 
-            opcoes.add(noticiaa);
+            for(int i = 0; i < listaNoticias.size();i++){
+                opcoes.add(listaNoticias.get(i));
+            }
             load.dismiss();
 
         }

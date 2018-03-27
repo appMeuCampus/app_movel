@@ -2,43 +2,58 @@ package com.example.a1513iron.app_meucampus_release1.Teste;
 
 import android.util.Log;
 
+import com.example.a1513iron.app_meucampus_release1.classes.Noticia;
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Utils {
 
 
-    public Noticias_Classe BuscarPorIndex(String url,int i) throws JSONException {
+    public ArrayList<Noticias_Classe> BuscarPorIndex(String url, int i) throws JSONException {
 
         String json;
         json = NetworkUtils.getJSONFromAPI(url);
+        Log.i("teste",json);
+        //json = NoticiaHttp.carregarNoticiasJson(url);
+        ArrayList<Noticias_Classe> listaNoticias = new ArrayList<Noticias_Classe>();
         Noticias_Classe noticiaa = new Noticias_Classe();
 
         JSONArray jsonObj = new JSONArray(json);
-        if(i < jsonObj.length()) {// verifica se o index existe
-            noticiaa.setID((jsonObj.getJSONObject(i).getInt("id")));
-            noticiaa.setTitulo(jsonObj.getJSONObject(i).getString("titulo"));
-            noticiaa.numero_de_noticias = jsonObj.length();
 
-            if (jsonObj.getJSONObject(i).has("texto") == true)
-                noticiaa.setTexto(jsonObj.getJSONObject(i).getString("texto"));
 
-            return noticiaa;
+        if(i < jsonObj.length() && jsonObj.getJSONObject(0).getInt("id") != -1) {// verifica se o index existe
+            for(int cont = 0; cont < jsonObj.length(); cont++) {
+                noticiaa = new Noticias_Classe();
+                noticiaa.setID((jsonObj.getJSONObject(cont).getInt("id")));
+                noticiaa.setTitulo(jsonObj.getJSONObject(cont).getString("titulo"));
+                noticiaa.numero_de_noticias = jsonObj.length();
+
+                if (jsonObj.getJSONObject(cont).has("texto") == true) {
+                    noticiaa.setTexto(jsonObj.getJSONObject(cont).getString("texto"));
+                }
+                listaNoticias.add(noticiaa);
+            }
+            return listaNoticias;
         }else{
             noticiaa.setTitulo("Erro ao buscar noticia no servidor!");
-            noticiaa.setID(-5);
-            return noticiaa;
+            noticiaa.setID(-1);
+            listaNoticias.add(noticiaa);
+            return listaNoticias;
         }
 
     }
 
-    public Noticias_Classe BuscarPorID(String url,int id) throws JSONException {
+    public ArrayList<Noticias_Classe> BuscarPorID(String url,int id) throws JSONException {
 
         String json;
         json = NetworkUtils.getJSONFromAPI(url);
+        ArrayList<Noticias_Classe> listaNoticias = new ArrayList<Noticias_Classe>();
         Noticias_Classe noticiaa = new Noticias_Classe();
 
         JSONArray jsonObj = new JSONArray(json);
@@ -48,20 +63,22 @@ public class Utils {
                 noticiaa.setTitulo(jsonObj.getJSONObject(i).getString("titulo"));
                 noticiaa.numero_de_noticias = jsonObj.length();
 
-                if(jsonObj.getJSONObject(i).has("texto") == true)
+                if(jsonObj.getJSONObject(i).has("texto") == true) {
                     noticiaa.setTexto(jsonObj.getJSONObject(i).getString("texto"));
+                }
             }
         }
-
-        return noticiaa;
+        listaNoticias.add(noticiaa);
+        return listaNoticias;
 
     }
 
-    public Noticias_Classe BuscarTexto(String url, int id) throws JSONException {
+    public ArrayList<Noticias_Classe> BuscarTexto(String url, int id) throws JSONException {
 
         Log.i("PASSEI AQUI","PASSEI AQUI");
         String json;
         json = NetworkUtils.getJSONFromAPI(url + id);
+        ArrayList<Noticias_Classe> listaNoticias = new ArrayList<Noticias_Classe>();
         Noticias_Classe noticiaa = new Noticias_Classe();
         JSONArray jsonObj = new JSONArray(json);
 
@@ -70,12 +87,13 @@ public class Utils {
         }else{
             noticiaa.setTexto("Texto não encontrado.");
         }
-        return noticiaa;
+        listaNoticias.add(noticiaa);
+        return listaNoticias;
 
 
     }
 
-    public Noticias_Classe getInformacaoNoticias(String url, String operacao,int num) throws JSONException {
+    public ArrayList<Noticias_Classe> getInformacaoNoticias(String url, String operacao, int num) throws JSONException {
 
         //Log.i("teste",operacao);
         if(operacao == "BuscarPorIndex"){
@@ -88,7 +106,9 @@ public class Utils {
                 Noticias_Classe noticia = new Noticias_Classe();
                 noticia.setTitulo("OPERAÇÃO SOLICITADA INVÁLIDA");
                 noticia.setID(-2);
-                return noticia;
+                ArrayList<Noticias_Classe> listaNoticias = new ArrayList<Noticias_Classe>();
+                listaNoticias.add(noticia);
+                return listaNoticias;
 
         }
 

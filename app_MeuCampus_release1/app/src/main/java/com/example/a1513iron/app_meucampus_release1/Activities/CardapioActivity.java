@@ -5,8 +5,12 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -19,11 +23,12 @@ import com.example.a1513iron.app_meucampus_release1.classes.RecyclerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CardapioActivity extends MainActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class CardapioActivity extends SobreActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private RecyclerView recyclerView;
     private RecyclerAdapter adapter;
     private List<Cardapio_Classe> list = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

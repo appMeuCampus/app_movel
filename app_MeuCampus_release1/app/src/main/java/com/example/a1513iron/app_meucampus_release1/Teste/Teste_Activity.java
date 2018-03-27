@@ -31,10 +31,10 @@ public class Teste_Activity extends AppCompatActivity {
         t_titulo.setText("Titulo");
         t_id.setText("ID");
 
-        RecuperaDados teste = new RecuperaDados("http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias","BuscarPorIndex",1);
-        teste.execute();
+       // RecuperaDados teste = new RecuperaDados("http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias","BuscarPorIndex",1);
+       // teste.execute();
 
-    }
+    }/*
     public class RecuperaDados extends AsyncTask<Void, Void, Noticias_Classe> {
 
         private ProgressDialog load;
@@ -78,6 +78,6 @@ public class Teste_Activity extends AppCompatActivity {
 
         }
 
-    }
+    }*/
 
 }

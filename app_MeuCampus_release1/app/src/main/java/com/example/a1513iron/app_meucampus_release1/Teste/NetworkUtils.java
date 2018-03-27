@@ -12,19 +12,20 @@ import java.net.URL;
 
 public class NetworkUtils {
 
+    public static final int SEGUNDOS = 1000;
+
     //Responsavel por carregar o Objeto JSON
     public static String getJSONFromAPI(String url) {
         String retorno = "";
         try {
             URL apiEnd = new URL(url);
             int codigoResposta;
-            HttpURLConnection conexao;
+            HttpURLConnection conexao = (HttpURLConnection) apiEnd.openConnection();;
             InputStream is;
 
-            conexao = (HttpURLConnection) apiEnd.openConnection();
             conexao.setRequestMethod("GET");
-            conexao.setReadTimeout(5000);
-            conexao.setConnectTimeout(5000);
+            conexao.setReadTimeout(5*SEGUNDOS);
+            conexao.setConnectTimeout(5*SEGUNDOS);
             try {
                 conexao.connect();
             }catch(java.net.SocketTimeoutException e){
