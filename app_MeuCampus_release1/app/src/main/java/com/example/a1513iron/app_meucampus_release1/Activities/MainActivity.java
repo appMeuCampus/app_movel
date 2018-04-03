@@ -2,16 +2,11 @@ package com.example.a1513iron.app_meucampus_release1.Activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Region;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,23 +15,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.a1513iron.app_meucampus_release1.R;
-import com.example.a1513iron.app_meucampus_release1.Teste.NoticiaHttp;
 import com.example.a1513iron.app_meucampus_release1.Teste.Teste_Activity;
 import com.example.a1513iron.app_meucampus_release1.Teste.Utils;
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
-
 import org.json.JSONException;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.ExecutionException;
-
 
 public class MainActivity extends SobreActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -61,10 +50,10 @@ public class MainActivity extends SobreActivity implements NavigationView.OnNavi
         recd = new RecuperaDados(URL_ACT, "BuscarPorIndex",0);
         recd.execute();
 
-            adaptador = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, opcoes);
-            listview1.setAdapter(adaptador);
+        adaptador = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, opcoes);
+        listview1.setAdapter(adaptador);
 
-            listview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     switch (position) {
@@ -94,10 +83,7 @@ public class MainActivity extends SobreActivity implements NavigationView.OnNavi
             Date d = new Date();
             diaSemana.setText(df.format(d));
 
-
     }
-
-
 
     //maquina de estados dos menus do drawerLayout
     @Override

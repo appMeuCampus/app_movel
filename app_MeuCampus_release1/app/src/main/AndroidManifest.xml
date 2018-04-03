@@ -44,7 +44,7 @@
         <activity android:name=".Activities.ListaNoticiasActivity" />
         <activity android:name=".Teste.Teste_Activity" />
         <activity android:name=".Activities.CardapioActivity" />
-        <activity android:name=".Activities.SobreActivity"></activity>
+        <activity android:name=".Activities.SobreActivity" />
     </application>
 
 </manifest>

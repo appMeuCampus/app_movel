@@ -1,4 +1,4 @@
-package com.example.a1513iron.app_meucampus_release1.classes;
+package com.example.a1513iron.app_meucampus_release1.viewholder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -24,6 +24,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     public TextView textoA6;
     public TextView textoJ6;
     public TextView dia_semana;
+    public TextView card_titulo_Noticia;
 
     public ViewHolder(View itemView) {
         super(itemView);
@@ -41,5 +42,6 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         this.textoA6 = itemView.findViewById(R.id.a6);
         this.textoJ6 = itemView.findViewById(R.id.j6);
         this.dia_semana = itemView.findViewById(R.id.dia_da_semana);
+        this.card_titulo_Noticia = itemView.findViewById(R.id.card_titulo_noticia);
     }
 }

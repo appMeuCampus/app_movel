@@ -1,4 +1,4 @@
-package com.example.a1513iron.app_meucampus_release1.classes;
+package com.example.a1513iron.app_meucampus_release1.adapter;
 
 
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.a1513iron.app_meucampus_release1.R;
+import com.example.a1513iron.app_meucampus_release1.classes.Cardapio_Classe;
+import com.example.a1513iron.app_meucampus_release1.viewholder.ViewHolder;
 
 import java.util.List;
 
@@ -22,7 +24,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder>{
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cardapio,parent,false);
 
         return new ViewHolder(view);
     }

@@ -8,89 +8,95 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.a1513iron.app_meucampus_release1.Activities.listener.OnListClickInteractionListener;
 import com.example.a1513iron.app_meucampus_release1.R;
-import com.example.a1513iron.app_meucampus_release1.Teste.GetJSON_Classe;
 import com.example.a1513iron.app_meucampus_release1.Teste.Teste_Activity;
 import com.example.a1513iron.app_meucampus_release1.Teste.Utils;
-import com.example.a1513iron.app_meucampus_release1.classes.Noticia;
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
+import com.example.a1513iron.app_meucampus_release1.adapter.RecyclerAdapterNoticias;
+import com.example.a1513iron.app_meucampus_release1.viewholder.ViewHolder;
 
 import org.json.JSONException;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
+import java.util.List;
 
 public class ListaNoticiasActivity extends SobreActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private ArrayList<Noticias_Classe> opcoes;
-    private ArrayAdapter<Noticias_Classe> adaptador;
-    private ListView listview2;
+    //private RecyclerView recyclerView;
+    //private RecyclerAdapterNoticias adapter;
+    private List<Noticias_Classe> list = new ArrayList<>();
+    ViewHolder mViewHolder = new ViewHolder();
+    private Context mContext;
     private RecuperaDados recd;
     public static final String URL_ACT = "http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias";
+    private static class ViewHolder{
+        RecyclerView recyclerNoticias;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_noticias);
 
+        this.mContext = this;
         CreateDrawerLayout();
 
-        listview2 = (ListView) findViewById(R.id.listview2);
-        opcoes =  new ArrayList<>();
+        //obter o recycler
+        this.mViewHolder.recyclerNoticias = (RecyclerView) this.findViewById(R.id.recycler_view2);
+
+        // Implementa o evento de click para passar por parâmetro para a ViewHolder
+        OnListClickInteractionListener listener = new OnListClickInteractionListener() {
+            @Override
+            public void onClick(Noticias_Classe noticiaa) {
+                //Bundle bundle = new Bundle();
+                //bundle.putInt("NoticiaID", id);
+
+                Intent intent = new Intent(mContext, MostrarNoticiaActivity.class);
+                intent.putExtra("Noticia", noticiaa);
+                // intent.putExtra("Testinho",bundle);
+
+                startActivity(intent);
+            }
+        };
+
+        //definir o adapter
+        RecyclerAdapterNoticias noticiaAdapter = new RecyclerAdapterNoticias(list,listener);
+        this.mViewHolder.recyclerNoticias.setAdapter(noticiaAdapter);
+
+        //definir o layout
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        this.mViewHolder.recyclerNoticias.setLayoutManager(linearLayoutManager);
+
+
+        //recyclerView = (RecyclerView) findViewById(R.id.recycler_view2);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+
         recd = new RecuperaDados(URL_ACT, "BuscarPorIndex",0);
         recd.execute();
+/*
+        adapter = new RecyclerAdapterNoticias(list);
+        recyclerView.setAdapter(adapter);
 
-
-        adaptador = new ArrayAdapter<>(ListaNoticiasActivity.this, android.R.layout.simple_list_item_1,opcoes);
-        listview2.setAdapter(adaptador);
-
-        listview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        recyclerView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
-                    case 0:
-                        Intent intent = new Intent(getApplicationContext(), MostrarNoticiaActivity.class);
-                        intent.putExtra("Noticia", opcoes.get(0));
-                        startActivity(intent);
-                        break;
-                    case 1:
-                        intent = new Intent(getApplicationContext(), MostrarNoticiaActivity.class);
-                        intent.putExtra("Noticia", opcoes.get(1));
-                        startActivity(intent);
-                        break;
-                    case 2:
-                        intent = new Intent(getApplicationContext(), MostrarNoticiaActivity.class);
-                        intent.putExtra("Noticia", opcoes.get(2));
-                        startActivity(intent);
-                        break;
-                    case 3:
-                        intent = new Intent(getApplicationContext(), MostrarNoticiaActivity.class);
-                        intent.putExtra("Noticia", opcoes.get(3));
-                        startActivity(intent);
-                        break;
-                    case 4:
-                        intent = new Intent(getApplicationContext(), MostrarNoticiaActivity.class);
-                        intent.putExtra("Noticia", opcoes.get(4));
-                        startActivity(intent);
-                        break;
-                    case 5:
-                        intent = new Intent(getApplicationContext(), MostrarNoticiaActivity.class);
-                        intent.putExtra("Noticia", opcoes.get(5));
-                        startActivity(intent);
-                        break;
-                }
+            public void onClick(View view) {
+                Log.i("testssssssssssssse","passei aqui");
+                Intent intent = new Intent(getApplicationContext(), MostrarNoticiaActivity.class);
+                intent.putExtra("Noticia", list.get(recyclerView.getAdapter().getItemCount()));
+                startActivity(intent);
+
             }
-        });
+        });*/
 
     }
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -189,7 +195,7 @@ public class ListaNoticiasActivity extends SobreActivity implements NavigationVi
         protected void onPostExecute(ArrayList<Noticias_Classe> listaNoticias) {
 
             for(int i = 0; i < listaNoticias.size();i++){
-                opcoes.add(listaNoticias.get(i));
+                list.add(listaNoticias.get(i));
             }
             load.dismiss();
 
