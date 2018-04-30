@@ -15,9 +15,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.a1513iron.app_meucampus_release1.Conexao.Utils_objNoticia;
 import com.example.a1513iron.app_meucampus_release1.R;
-import com.example.a1513iron.app_meucampus_release1.Teste.Teste_Activity;
-import com.example.a1513iron.app_meucampus_release1.Teste.Utils;
+import com.example.a1513iron.app_meucampus_release1.Conexao.Teste_Activity;
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
 import org.json.JSONException;
 import java.text.DateFormat;
@@ -112,6 +113,8 @@ public class MainActivity extends SobreActivity implements NavigationView.OnNavi
             }
             case R.id.menu_busao: {
                 Toast.makeText(this, "Menu Busão", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(),HorarioOnibusActivity.class);
+                startActivity(intent);
                 break;
             }
             case R.id.menu_mapa: {
@@ -165,7 +168,7 @@ public class MainActivity extends SobreActivity implements NavigationView.OnNavi
 
         @Override
         protected ArrayList<Noticias_Classe> doInBackground(Void... params) {
-            Utils util = new Utils();
+            Utils_objNoticia util = new Utils_objNoticia();
             try {
                 return util.getInformacaoNoticias(endereco,operacao, num);
             } catch (JSONException e) {

@@ -42,9 +42,11 @@
         <activity android:name=".Activities.TelaLugarActivity" />
         <activity android:name=".Activities.MostrarNoticiaActivity" />
         <activity android:name=".Activities.ListaNoticiasActivity" />
-        <activity android:name=".Teste.Teste_Activity" />
+        <activity android:name=".Conexao.Teste_Activity" />
         <activity android:name=".Activities.CardapioActivity" />
         <activity android:name=".Activities.SobreActivity" />
+        <activity android:name=".Activities.HorarioOnibusActivity" />
+        <activity android:name=".Activities.MostraHorarioBusaoActivity"></activity>
     </application>
 
 </manifest>

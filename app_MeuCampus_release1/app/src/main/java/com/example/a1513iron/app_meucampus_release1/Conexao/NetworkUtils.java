@@ -1,6 +1,4 @@
-package com.example.a1513iron.app_meucampus_release1.Teste;
-
-import android.util.Log;
+package com.example.a1513iron.app_meucampus_release1.Conexao;
 
 import java.io.BufferedReader;
 import java.io.IOException;

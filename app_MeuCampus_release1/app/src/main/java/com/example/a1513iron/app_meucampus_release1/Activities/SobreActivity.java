@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.a1513iron.app_meucampus_release1.R;
-import com.example.a1513iron.app_meucampus_release1.Teste.Teste_Activity;
+import com.example.a1513iron.app_meucampus_release1.Conexao.Teste_Activity;
 
 public class SobreActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

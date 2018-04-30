@@ -10,18 +10,15 @@ import android.support.v4.view.GravityCompat;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.example.a1513iron.app_meucampus_release1.Activities.listener.OnListClickInteractionListener;
+import com.example.a1513iron.app_meucampus_release1.Conexao.Utils_objNoticia;
 import com.example.a1513iron.app_meucampus_release1.R;
-import com.example.a1513iron.app_meucampus_release1.Teste.Teste_Activity;
-import com.example.a1513iron.app_meucampus_release1.Teste.Utils;
+import com.example.a1513iron.app_meucampus_release1.Conexao.Teste_Activity;
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
 import com.example.a1513iron.app_meucampus_release1.adapter.RecyclerAdapterNoticias;
-import com.example.a1513iron.app_meucampus_release1.viewholder.ViewHolder;
 
 import org.json.JSONException;
 
@@ -76,25 +73,9 @@ public class ListaNoticiasActivity extends SobreActivity implements NavigationVi
         this.mViewHolder.recyclerNoticias.setLayoutManager(linearLayoutManager);
 
 
-        //recyclerView = (RecyclerView) findViewById(R.id.recycler_view2);
-        //recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         recd = new RecuperaDados(URL_ACT, "BuscarPorIndex",0);
         recd.execute();
-/*
-        adapter = new RecyclerAdapterNoticias(list);
-        recyclerView.setAdapter(adapter);
-
-        recyclerView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i("testssssssssssssse","passei aqui");
-                Intent intent = new Intent(getApplicationContext(), MostrarNoticiaActivity.class);
-                intent.putExtra("Noticia", list.get(recyclerView.getAdapter().getItemCount()));
-                startActivity(intent);
-
-            }
-        });*/
 
     }
     @Override
@@ -177,7 +158,7 @@ public class ListaNoticiasActivity extends SobreActivity implements NavigationVi
 
         @Override
         protected ArrayList<Noticias_Classe> doInBackground(Void... params) {
-            Utils util = new Utils();
+            Utils_objNoticia util = new Utils_objNoticia();
             try {
                 return util.getInformacaoNoticias(endereco,operacao, num);
             } catch (JSONException e) {

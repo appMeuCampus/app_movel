@@ -8,25 +8,18 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.os.Bundle;
 import android.text.Html;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.a1513iron.app_meucampus_release1.Conexao.Utils_objNoticia;
 import com.example.a1513iron.app_meucampus_release1.R;
-import com.example.a1513iron.app_meucampus_release1.Teste.GetJSON_Classe;
-import com.example.a1513iron.app_meucampus_release1.Teste.Teste_Activity;
-import com.example.a1513iron.app_meucampus_release1.Teste.Utils;
-import com.example.a1513iron.app_meucampus_release1.classes.Noticia;
+import com.example.a1513iron.app_meucampus_release1.Conexao.Teste_Activity;
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
 import com.example.a1513iron.app_meucampus_release1.classes.URLImageParser;
-
 import org.json.JSONException;
-
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
-import static android.text.Html.fromHtml;
 
 public class MostrarNoticiaActivity extends SobreActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -50,9 +43,6 @@ public class MostrarNoticiaActivity extends SobreActivity implements NavigationV
         noticiaAtual = it.getParcelableExtra("Noticia");
         RecuperaDados rcd = new RecuperaDados("http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticia?id=","BuscarTexto",noticiaAtual.getID());
         rcd.execute();
-
-
-
 
     }
 
@@ -135,7 +125,7 @@ public class MostrarNoticiaActivity extends SobreActivity implements NavigationV
 
         @Override
         protected ArrayList<Noticias_Classe> doInBackground(Void... params) {
-            Utils util = new Utils();
+            Utils_objNoticia util = new Utils_objNoticia();
             try {
                 return util.getInformacaoNoticias(endereco,operacao, num);
             } catch (JSONException e) {

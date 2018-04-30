@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <TextView
+        android:paddingTop="34sp"
+        android:id="@+id/textViewBusao"
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:text="Escolha uma opção"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+    <Button
+        android:id="@+id/buttonbusaosemana"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Semana"
+        android:textColor="@color/colorPrimary"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginBottom="34sp"/>
+
+    <Button
+        android:id="@+id/buttonbusaofds"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Final de Semana"
+        android:textColor="@color/colorPrimary"
+        android:fontFamily="sans-serif-condensed"/>
+</LinearLayout>

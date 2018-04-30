@@ -1,18 +1,13 @@
-package com.example.a1513iron.app_meucampus_release1.Teste;
+package com.example.a1513iron.app_meucampus_release1.Conexao;
 
 import android.util.Log;
-
-import com.example.a1513iron.app_meucampus_release1.classes.Noticia;
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
-
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.List;
 
-public class Utils {
+
+public class Utils_objNoticia {
 
 
     public ArrayList<Noticias_Classe> BuscarPorIndex(String url, int i) throws JSONException {
@@ -20,7 +15,6 @@ public class Utils {
         String json;
         json = NetworkUtils.getJSONFromAPI(url);
         Log.i("teste",json);
-        //json = NoticiaHttp.carregarNoticiasJson(url);
         ArrayList<Noticias_Classe> listaNoticias = new ArrayList<Noticias_Classe>();
         Noticias_Classe noticiaa = new Noticias_Classe();
 
@@ -90,7 +84,6 @@ public class Utils {
         listaNoticias.add(noticiaa);
         return listaNoticias;
 
-
     }
 
     public ArrayList<Noticias_Classe> getInformacaoNoticias(String url, String operacao, int num) throws JSONException {
@@ -113,28 +106,5 @@ public class Utils {
         }
 
     }
-
-    /*private Noticias_Classe parseJsonNoticias(String json){
-        try {
-            Noticias_Classe noticiaa = new Noticias_Classe();
-
-            JSONArray jsonObj = new JSONArray(json);
-
-            //Atribui os objetos que estão nas camadas mais altas
-            noticiaa.setID((jsonObj.getJSONObject(index).getInt("id")));
-            noticiaa.setTitulo(jsonObj.getJSONObject(index).getString("titulo"));
-            noticiaa.numero_de_noticias = jsonObj.length();
-
-            if(jsonObj.getJSONObject(index).has("texto") == true)
-                noticiaa.setTexto(jsonObj.getJSONObject(index).getString("texto"));
-
-
-            return noticiaa;
-        }catch (JSONException e){
-            e.printStackTrace();
-            return null;
-        }
-    }*/
-
 
 }
