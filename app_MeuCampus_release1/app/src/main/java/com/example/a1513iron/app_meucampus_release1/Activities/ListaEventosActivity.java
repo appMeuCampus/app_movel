@@ -1,48 +1,75 @@
 package com.example.a1513iron.app_meucampus_release1.Activities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Html;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.a1513iron.app_meucampus_release1.Conexao.Utils_objNoticia;
-import com.example.a1513iron.app_meucampus_release1.R;
+import com.example.a1513iron.app_meucampus_release1.Activities.listener.OnListClickInteractionListener;
 import com.example.a1513iron.app_meucampus_release1.Conexao.Teste_Activity;
+import com.example.a1513iron.app_meucampus_release1.Conexao.Utils_objEventos;
+import com.example.a1513iron.app_meucampus_release1.R;
+import com.example.a1513iron.app_meucampus_release1.adapter.RecyclerAdapterEventos;
+import com.example.a1513iron.app_meucampus_release1.adapter.RecyclerAdapterNoticias;
+import com.example.a1513iron.app_meucampus_release1.classes.Eventos_Classe;
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
-import com.example.a1513iron.app_meucampus_release1.classes.URLImageParser;
+
 import org.json.JSONException;
+
 import java.util.ArrayList;
+import java.util.List;
 
+public class ListaEventosActivity extends SobreActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-public class MostrarNoticiaActivity extends SobreActivity implements NavigationView.OnNavigationItemSelectedListener {
-
-    private String texto = "vazio";
-    private TextView tituloAtual;
-    private TextView textoAtual;
-    private Noticias_Classe noticiaAtual;
-
+    private List<Eventos_Classe> list = new ArrayList<>();
+    ViewHolder mViewHolder = new ViewHolder();
+    private Context mContext;
+    private RecuperaDados recd;
+    public static final String URL_ACT = "http://10.0.2.2/appmeucampus/integracao/evento/retornarEventos";
+    private static class ViewHolder{
+        RecyclerView recyclerEventos;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mostrar_noticia);
+        setContentView(R.layout.activity_lista_eventos);
 
+        this.mContext = this;
         CreateDrawerLayout();
 
-        tituloAtual = (TextView) findViewById(R.id.textviewTituloAtual);
-        textoAtual = (TextView) findViewById(R.id.textviewTextoAtual);
+        //obter o recycler
+        this.mViewHolder.recyclerEventos = (RecyclerView) this.findViewById(R.id.recycler_view_eventos);
 
-        //recuperando os dados passado da activity que chamou essa activity
-        Intent it = getIntent();
-        noticiaAtual = it.getParcelableExtra("Noticia");
-        RecuperaDados rcd = new RecuperaDados("http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticia?id=","BuscarTexto",noticiaAtual.getID());
-        rcd.execute();
+        // Implementa o evento de click para passar por parâmetro para a ViewHolder
+        OnListClickInteractionListener listener = new OnListClickInteractionListener() {
+            @Override
+            public void onClick(Noticias_Classe noticiaa) {
+            }
+
+            @Override
+            public void onClick(Eventos_Classe noticiaa) {
+            }
+        };
+
+        //definir o adapter
+        RecyclerAdapterEventos eventoAdapter = new RecyclerAdapterEventos(list,listener);
+        this.mViewHolder.recyclerEventos.setAdapter(eventoAdapter);
+
+        //definir o layout
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        this.mViewHolder.recyclerEventos.setLayoutManager(linearLayoutManager);
+
+        recd = new RecuperaDados(URL_ACT, "BuscarPorIndex",0);
+        recd.execute();
 
     }
 
@@ -110,17 +137,14 @@ public class MostrarNoticiaActivity extends SobreActivity implements NavigationV
         return true;
     }
 
-    public class RecuperaDados extends AsyncTask<Void, Void, ArrayList<Noticias_Classe>> {
+    public class RecuperaDados extends AsyncTask<Void, Void, ArrayList<Eventos_Classe>> {
 
         private ProgressDialog load;
         private int num;
         String operacao;
-        String endereco; //"http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias"
-        // por default o endereco vai ser esse pois estava craashando o app se deixasse vazio...
-        // mas isso não irá interferir nas demais funções da classe pois é umavariavel q muda toda x q um método de busca é chamado
+        String endereco;
 
-
-        public RecuperaDados(String url, String operacao,int num){
+        public RecuperaDados(String url, String operacao, int num) {
             this.endereco = url;
             this.operacao = operacao;
             this.num = num;
@@ -128,40 +152,28 @@ public class MostrarNoticiaActivity extends SobreActivity implements NavigationV
 
         @Override
         protected void onPreExecute() {
-            load = ProgressDialog.show(MostrarNoticiaActivity.this, "Por favor Aguarde ...", "Recuperando Informações do Servidor...");
+            load = ProgressDialog.show(ListaEventosActivity.this, "Por favor Aguarde ...", "Recuperando Informações do Servidor...");
         }
 
         @Override
-        protected ArrayList<Noticias_Classe> doInBackground(Void... params) {
-            Utils_objNoticia util = new Utils_objNoticia();
+        protected ArrayList<Eventos_Classe> doInBackground(Void... params) {
+            Utils_objEventos util = new Utils_objEventos();
             try {
-                return util.getInformacaoNoticias(endereco,operacao, num);
+                return util.getInformacaoEventos(endereco, operacao, num);
             } catch (JSONException e) {
                 e.printStackTrace();
-                Noticias_Classe noticia = new Noticias_Classe();
-                noticia.setTitulo("Erro na conexão com o servidor!");
-                noticia.setID(-3);
-                noticia.setTexto("Texto não buscado no servidor");
-                ArrayList<Noticias_Classe> listaNoticias = new ArrayList<Noticias_Classe>();
-                listaNoticias.add(noticia);
-                return listaNoticias;
+                ArrayList<Eventos_Classe> eventos = new ArrayList<>();
+                eventos.add(new Eventos_Classe());
+                return eventos;
             }
-
         }
 
         @Override
-        protected void onPostExecute(ArrayList<Noticias_Classe> listaNoticias) {
-
-            texto = listaNoticias.get(0).getTexto();
-            tituloAtual.setText(noticiaAtual.getTitulo());
-            //Spanned sp = Html.fromHtml(texto);
-            //textoAtual.setText(sp);
-            textoAtual.setText(Html.fromHtml(texto,new URLImageParser(textoAtual, getApplicationContext()), null));
-
-
+        protected void onPostExecute(ArrayList<Eventos_Classe> listaEventos) {
+            for(int i = 0; i < listaEventos.size();i++){
+                list.add(listaEventos.get(i));
+            }
             load.dismiss();
-
         }
-
     }
 }

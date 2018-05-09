@@ -93,6 +93,12 @@ public class SobreActivity extends AppCompatActivity implements NavigationView.O
                 startActivity(intent);
                 break;
             }
+            case R.id.menu_eventos: {
+                Toast.makeText(this, "Menu Evntos", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(),ListaEventosActivity.class);
+                startActivity(intent);
+                break;
+            }
             case R.id.menu_cardapio: {
                 Toast.makeText(this, "Menu Cardapio", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(),CardapioActivity.class);
@@ -101,6 +107,8 @@ public class SobreActivity extends AppCompatActivity implements NavigationView.O
             }
             case R.id.menu_busao: {
                 Toast.makeText(this, "Menu Busão", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(),HorarioOnibusActivity.class);
+                startActivity(intent);
                 break;
             }
             case R.id.menu_mapa: {
@@ -130,8 +138,5 @@ public class SobreActivity extends AppCompatActivity implements NavigationView.O
 
         return true;
     }
-
-
-
 
 }

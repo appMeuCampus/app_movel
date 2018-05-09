@@ -46,7 +46,8 @@
         <activity android:name=".Activities.CardapioActivity" />
         <activity android:name=".Activities.SobreActivity" />
         <activity android:name=".Activities.HorarioOnibusActivity" />
-        <activity android:name=".Activities.MostraHorarioBusaoActivity"></activity>
+        <activity android:name=".Activities.MostraHorarioBusaoActivity" />
+        <activity android:name=".Activities.ListaEventosActivity"></activity>
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package com.example.a1513iron.app_meucampus_release1.Activities.listener;
 
+import com.example.a1513iron.app_meucampus_release1.classes.Eventos_Classe;
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
 
 /**
@@ -9,7 +10,9 @@ public interface OnListClickInteractionListener {
 
     /**
      * Trata evento de click na lista
+     * @param noticiaa
      */
     void onClick(Noticias_Classe noticiaa);
+    void onClick(Eventos_Classe noticiaa);
 
 }

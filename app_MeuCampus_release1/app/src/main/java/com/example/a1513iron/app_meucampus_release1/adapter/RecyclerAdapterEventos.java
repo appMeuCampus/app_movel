@@ -8,40 +8,40 @@ import android.view.ViewGroup;
 
 import com.example.a1513iron.app_meucampus_release1.Activities.listener.OnListClickInteractionListener;
 import com.example.a1513iron.app_meucampus_release1.R;
+import com.example.a1513iron.app_meucampus_release1.classes.Eventos_Classe;
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
+import com.example.a1513iron.app_meucampus_release1.viewholder.EventoViewHolder;
 import com.example.a1513iron.app_meucampus_release1.viewholder.NoticiaViewHolder;
 
 import java.util.List;
 
-public class RecyclerAdapterNoticias extends RecyclerView.Adapter<NoticiaViewHolder>{
+/**
+ * Created by BLDO on 08/05/2018.
+ */
 
-    private List<Noticias_Classe> list;
+public class RecyclerAdapterEventos extends RecyclerView.Adapter<EventoViewHolder> {
+
+    private List<Eventos_Classe> list;
     private OnListClickInteractionListener mOnListClickInterationListener;
 
-    public RecyclerAdapterNoticias(List<Noticias_Classe> list, OnListClickInteractionListener listener){
+    public RecyclerAdapterEventos(List<Eventos_Classe> list, OnListClickInteractionListener listener){
         this.list = list;
         mOnListClickInterationListener = listener;
     }
 
-
     @Override
-    public NoticiaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
+    public EventoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.item_noticia,parent,false);
+        View view = inflater.inflate(R.layout.item_evento,parent,false);
 
-        //View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_noticia,parent,false);
-
-        return new NoticiaViewHolder(view);
+        return new EventoViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(NoticiaViewHolder holder, int position) {
-
-        Noticias_Classe noticiaa = list.get(position);
-        holder.bindData(noticiaa,mOnListClickInterationListener);
-
+    public void onBindViewHolder(EventoViewHolder holder, int position) {
+        Eventos_Classe eventoo = list.get(position);
+        holder.bindData(eventoo,mOnListClickInterationListener);
     }
 
     @Override

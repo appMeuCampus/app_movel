@@ -46,7 +46,9 @@ public class Eventos_Classe implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-
+        parcel.writeInt(numero_de_eventos);
+        parcel.writeInt(id);
+        parcel.writeString(nome);
     }
 
     public int getNumero_de_eventos() {

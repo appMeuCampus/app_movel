@@ -17,6 +17,7 @@ import com.example.a1513iron.app_meucampus_release1.Activities.listener.OnListCl
 import com.example.a1513iron.app_meucampus_release1.Conexao.Utils_objNoticia;
 import com.example.a1513iron.app_meucampus_release1.R;
 import com.example.a1513iron.app_meucampus_release1.Conexao.Teste_Activity;
+import com.example.a1513iron.app_meucampus_release1.classes.Eventos_Classe;
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
 import com.example.a1513iron.app_meucampus_release1.adapter.RecyclerAdapterNoticias;
 
@@ -62,7 +63,14 @@ public class ListaNoticiasActivity extends SobreActivity implements NavigationVi
 
                 startActivity(intent);
             }
+
+            @Override
+            public void onClick(Eventos_Classe noticiaa) {
+                
+            }
         };
+
+
 
         //definir o adapter
         RecyclerAdapterNoticias noticiaAdapter = new RecyclerAdapterNoticias(list,listener);
@@ -96,6 +104,12 @@ public class ListaNoticiasActivity extends SobreActivity implements NavigationVi
                 startActivity(intent);
                 break;
             }
+            case R.id.menu_eventos: {
+                Toast.makeText(this, "Menu Evntos", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(),ListaEventosActivity.class);
+                startActivity(intent);
+                break;
+            }
             case R.id.menu_cardapio: {
                 Toast.makeText(this, "Menu Cardapio", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(),CardapioActivity.class);
@@ -104,6 +118,8 @@ public class ListaNoticiasActivity extends SobreActivity implements NavigationVi
             }
             case R.id.menu_busao: {
                 Toast.makeText(this, "Menu Busão", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(),HorarioOnibusActivity.class);
+                startActivity(intent);
                 break;
             }
             case R.id.menu_mapa: {
@@ -133,6 +149,7 @@ public class ListaNoticiasActivity extends SobreActivity implements NavigationVi
 
         return true;
     }
+
     public class RecuperaDados extends AsyncTask<Void, Void, ArrayList<Noticias_Classe>> {
 
         private ProgressDialog load;

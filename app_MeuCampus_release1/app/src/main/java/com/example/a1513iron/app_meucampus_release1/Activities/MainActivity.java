@@ -105,6 +105,12 @@ public class MainActivity extends SobreActivity implements NavigationView.OnNavi
                 startActivity(intent);
                 break;
             }
+            case R.id.menu_eventos: {
+                Toast.makeText(this, "Menu Evntos", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(),ListaEventosActivity.class);
+                startActivity(intent);
+                break;
+            }
             case R.id.menu_cardapio: {
                 Toast.makeText(this, "Menu Cardapio", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(),CardapioActivity.class);
