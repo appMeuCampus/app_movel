@@ -67,7 +67,8 @@ public class Teste_Activity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(ArrayList<Eventos_Classe> eventos) {
-            t_titulo.setText(eventos.get(0).getNome());
+            //System.out.println(eventos.get(0).getData_inicial());
+            t_titulo.setText(eventos.get(0).getData_inicial());
             t_id.setText(Integer.toString(eventos.get(0).getId()));
             load.dismiss();
         }

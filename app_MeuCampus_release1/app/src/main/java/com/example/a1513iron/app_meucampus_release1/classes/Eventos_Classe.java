@@ -3,6 +3,8 @@ package com.example.a1513iron.app_meucampus_release1.classes;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -14,16 +16,18 @@ public class Eventos_Classe implements Parcelable {
 
     public int numero_de_eventos = 0;
     private int id = 0;
+    private String descricao;
     private String nome = "esse objto está com valor default";
-    private Date data_inicial;
-    private Date data_final;
+    private Calendar data_inicial = Calendar.getInstance();
 
 
     public Eventos_Classe(){}
 
     public Eventos_Classe(Parcel in) {
-        this.id = in.readInt();
-        this.nome = in.readString();
+        numero_de_eventos = in.readInt();
+        id = in.readInt();
+        nome = in.readString();
+        data_inicial.setTimeInMillis(in.readLong());
     }
 
     public static final Creator<Eventos_Classe> CREATOR = new Creator<Eventos_Classe>() {
@@ -49,6 +53,7 @@ public class Eventos_Classe implements Parcelable {
         parcel.writeInt(numero_de_eventos);
         parcel.writeInt(id);
         parcel.writeString(nome);
+        parcel.writeLong(data_inicial.getTimeInMillis());
     }
 
     public int getNumero_de_eventos() {
@@ -57,6 +62,14 @@ public class Eventos_Classe implements Parcelable {
 
     public void setNumero_de_eventos(int numero_de_eventos) {
         this.numero_de_eventos = numero_de_eventos;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public int getId() {
@@ -75,19 +88,22 @@ public class Eventos_Classe implements Parcelable {
         this.nome = nome;
     }
 
-    public Date getData_inicial() {
-        return data_inicial;
+    public String getData_inicial() {
+        //formatando para pdrão br
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MM yyyy");
+        return sdf.format(this.data_inicial.getTime());
     }
 
-    public void setData_inicial(Date data_inicial) {
-        this.data_inicial = data_inicial;
+    public void setData_inicial(String data_inicial) {
+        //splitando os valores da string retornada
+        String aux[] = data_inicial.split("/");
+        //iniciando
+        this.data_inicial = Calendar.getInstance();
+        //setando os valores de data
+        this.data_inicial.set(Calendar.DAY_OF_MONTH,Integer.parseInt(aux[0]));
+        this.data_inicial.set(Calendar.MONTH,Integer.parseInt(aux[1]) - 1);
+        this.data_inicial.set(Calendar.YEAR,Integer.parseInt(aux[2]));
+
     }
 
-    public Date getData_final() {
-        return data_final;
-    }
-
-    public void setData_final(Date data_final) {
-        this.data_final = data_final;
-    }
 }

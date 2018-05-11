@@ -29,6 +29,7 @@ public class Utils_objEventos {
                 evento = new Eventos_Classe();
                 evento.setId((jsonObj.getJSONObject(i).getInt("id")));
                 evento.setNome(jsonObj.getJSONObject(i).getString("nome"));
+                evento.setData_inicial(jsonObj.getJSONObject(i).getString("data_inicial"));
                 evento.setNumero_de_eventos(jsonObj.length());
 
                 listaEventos.add(evento);
@@ -42,14 +43,37 @@ public class Utils_objEventos {
         }
     }
 
+    public ArrayList<Eventos_Classe> BuscarPorID(String url,int id) throws JSONException {
+
+        String json;
+        json = NetworkUtils.getJSONFromAPI(url + id);
+        ArrayList<Eventos_Classe> listaEventos = new ArrayList<Eventos_Classe>();
+        Eventos_Classe eventoo = new Eventos_Classe();
+
+        JSONArray jsonObj = new JSONArray(json);
+        for(int i = 0; i < jsonObj.length(); i++){
+            if(jsonObj.getJSONObject(i).getInt("id") == id){
+                eventoo.setId((jsonObj.getJSONObject(i).getInt("id")));
+                eventoo.setNome(jsonObj.getJSONObject(i).getString("nome"));
+                eventoo.setData_inicial(jsonObj.getJSONObject(i).getString("data_inicial"));
+                eventoo.setDescricao(jsonObj.getJSONObject(i).getString("descricao"));
+                eventoo.numero_de_eventos = jsonObj.length();
+
+            }
+        }
+        listaEventos.add(eventoo);
+        return listaEventos;
+
+    }
+
     public ArrayList<Eventos_Classe> getInformacaoEventos(String url, String operacao, int num) throws JSONException {
 
         //Log.i("teste",operacao);
         if(operacao == "BuscarPorIndex"){
             return BuscarPorIndex(url,num);
-        }/*else if(operacao == "BuscarPorID"){
+        }else if(operacao == "BuscarPorID"){
             return BuscarPorID(url,num);
-        }else if(operacao == "BuscarTexto") {
+        }/*else if(operacao == "BuscarTexto") {
             return BuscarTexto(url,num);
         }*/else{
             Eventos_Classe evento = new Eventos_Classe();

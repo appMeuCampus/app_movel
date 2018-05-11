@@ -1,86 +1,59 @@
 package com.example.a1513iron.app_meucampus_release1.Activities;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.a1513iron.app_meucampus_release1.Activities.listener.OnListClickInteractionListener;
-import com.example.a1513iron.app_meucampus_release1.Conexao.Utils_objNoticia;
-import com.example.a1513iron.app_meucampus_release1.R;
 import com.example.a1513iron.app_meucampus_release1.Conexao.Teste_Activity;
+import com.example.a1513iron.app_meucampus_release1.Conexao.Utils_objEventos;
+import com.example.a1513iron.app_meucampus_release1.R;
 import com.example.a1513iron.app_meucampus_release1.classes.Eventos_Classe;
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
-import com.example.a1513iron.app_meucampus_release1.adapter.RecyclerAdapterNoticias;
 
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-public class ListaNoticiasActivity extends SobreActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MostrarEventoActivity extends SobreActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    //private RecyclerView recyclerView;
-    //private RecyclerAdapterNoticias adapter;
-    private List<Noticias_Classe> list = new ArrayList<>();
-    ViewHolder mViewHolder = new ViewHolder();
-    private Context mContext;
+    private TextView nomeEvento;
+    private TextView dataEvento;
+    private Eventos_Classe eventoAtual;
     private RecuperaDados recd;
-    public static final String URL_ACT = "http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias";
-    private static class ViewHolder{
-        RecyclerView recyclerNoticias;
-    }
+
+    public static final String URL_ACT = "http://10.0.2.2/appmeucampus/integracao/evento/retornarEvento?id=";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_noticias);
+        setContentView(R.layout.activity_mostrar_evento);
 
-        this.mContext = this;
         CreateDrawerLayout();
 
-        //obter o recycler
-        this.mViewHolder.recyclerNoticias = (RecyclerView) this.findViewById(R.id.recycler_view2);
+        nomeEvento = (TextView) findViewById(R.id.textViewNomeEventoAtual);
+        dataEvento = (TextView) findViewById(R.id.textViewDataEventoAtual);
 
-        // Implementa o evento de click para passar por parâmetro para a ViewHolder
-        OnListClickInteractionListener listener = new OnListClickInteractionListener() {
-            @Override
-            public void onClick(Noticias_Classe noticiaa) {
-                Intent intent = new Intent(mContext, MostrarNoticiaActivity.class);
-                intent.putExtra("Noticia", noticiaa);
-                startActivity(intent);
-            }
+        Intent it = getIntent();
+        eventoAtual = it.getParcelableExtra("Evento");
 
-            @Override
-            public void onClick(Eventos_Classe noticiaa) {
-                
-            }
-        };
-
-
-
-        //definir o adapter
-        RecyclerAdapterNoticias noticiaAdapter = new RecyclerAdapterNoticias(list,listener);
-        this.mViewHolder.recyclerNoticias.setAdapter(noticiaAdapter);
-
-        //definir o layout
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        this.mViewHolder.recyclerNoticias.setLayoutManager(linearLayoutManager);
-
-
-
-        recd = new RecuperaDados(URL_ACT, "BuscarPorIndex",0);
+        recd = new RecuperaDados(URL_ACT, "BuscarPorID",eventoAtual.getId());
         recd.execute();
 
+
+
+
     }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -145,19 +118,14 @@ public class ListaNoticiasActivity extends SobreActivity implements NavigationVi
         return true;
     }
 
-    public class RecuperaDados extends AsyncTask<Void, Void, ArrayList<Noticias_Classe>> {
+    public class RecuperaDados extends AsyncTask<Void, Void, ArrayList<Eventos_Classe>> {
 
         private ProgressDialog load;
         private int num;
-        public String titulo;
-        public int id;
         String operacao;
-        String endereco; //"http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias"
-        // por default o endereco vai ser esse pois estava craashando o app se deixasse vazio...
-        // mas isso não irá interferir nas demais funções da classe pois é umavariavel q muda toda x q um método de busca é chamado
+        String endereco;
 
-
-        public RecuperaDados(String url, String operacao,int num){
+        public RecuperaDados(String url, String operacao, int num) {
             this.endereco = url;
             this.operacao = operacao;
             this.num = num;
@@ -165,34 +133,27 @@ public class ListaNoticiasActivity extends SobreActivity implements NavigationVi
 
         @Override
         protected void onPreExecute() {
-            load = ProgressDialog.show(ListaNoticiasActivity.this, "Por favor Aguarde ...", "Recuperando Informações do Servidor...");
+            load = ProgressDialog.show(MostrarEventoActivity.this, "Por favor Aguarde ...", "Recuperando Informações do Servidor...");
         }
 
         @Override
-        protected ArrayList<Noticias_Classe> doInBackground(Void... params) {
-            Utils_objNoticia util = new Utils_objNoticia();
+        protected ArrayList<Eventos_Classe> doInBackground(Void... params) {
+            Utils_objEventos util = new Utils_objEventos();
             try {
-                return util.getInformacaoNoticias(endereco,operacao, num);
+                return util.getInformacaoEventos(endereco, operacao, num);
             } catch (JSONException e) {
                 e.printStackTrace();
-                Noticias_Classe noticia = new Noticias_Classe();
-                noticia.setTitulo("Erro na conexão com o servidor!");
-                noticia.setID(-3);
-                ArrayList<Noticias_Classe> listaNoticias = new ArrayList<Noticias_Classe>();
-                return listaNoticias;
+                ArrayList<Eventos_Classe> eventos = new ArrayList<>();
+                eventos.add(new Eventos_Classe());
+                return eventos;
             }
-
         }
 
         @Override
-        protected void onPostExecute(ArrayList<Noticias_Classe> listaNoticias) {
-
-            for(int i = 0; i < listaNoticias.size();i++){
-                list.add(listaNoticias.get(i));
-            }
+        protected void onPostExecute(ArrayList<Eventos_Classe> listaEventos) {
+            nomeEvento.setText(listaEventos.get(0).getNome());
+            dataEvento.setText(listaEventos.get(0).getDescricao());
             load.dismiss();
-
         }
-
     }
 }

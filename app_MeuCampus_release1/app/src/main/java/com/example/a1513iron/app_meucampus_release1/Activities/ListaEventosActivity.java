@@ -7,7 +7,6 @@ import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,7 +18,6 @@ import com.example.a1513iron.app_meucampus_release1.Conexao.Teste_Activity;
 import com.example.a1513iron.app_meucampus_release1.Conexao.Utils_objEventos;
 import com.example.a1513iron.app_meucampus_release1.R;
 import com.example.a1513iron.app_meucampus_release1.adapter.RecyclerAdapterEventos;
-import com.example.a1513iron.app_meucampus_release1.adapter.RecyclerAdapterNoticias;
 import com.example.a1513iron.app_meucampus_release1.classes.Eventos_Classe;
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
 
@@ -56,7 +54,12 @@ public class ListaEventosActivity extends SobreActivity implements NavigationVie
             }
 
             @Override
-            public void onClick(Eventos_Classe noticiaa) {
+            public void onClick(Eventos_Classe eventoo) {
+                System.out.println(eventoo.getData_inicial());
+                Intent intent = new Intent(mContext, MostrarEventoActivity.class);
+                System.out.println("nome: " + eventoo.getNome() + " data: " + eventoo.getData_inicial());
+                intent.putExtra("Evento", eventoo);
+                startActivity(intent);
             }
         };
 
