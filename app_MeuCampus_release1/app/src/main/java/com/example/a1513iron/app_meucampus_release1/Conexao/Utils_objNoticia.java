@@ -22,7 +22,9 @@ public class Utils_objNoticia {
 
 
         if(i < jsonObj.length() && jsonObj.getJSONObject(0).getInt("id") != -1) {// verifica se o index existe
+            System.out.println("ENTREI AQUI KRLLLL");
             for(int cont = 0; cont < jsonObj.length(); cont++) {
+                //System.out.println(jsonObj.getJSONObject(cont).getInt("id"));
                 noticiaa = new Noticias_Classe();
                 noticiaa.setID((jsonObj.getJSONObject(cont).getInt("id")));
                 noticiaa.setTitulo(jsonObj.getJSONObject(cont).getString("titulo"));

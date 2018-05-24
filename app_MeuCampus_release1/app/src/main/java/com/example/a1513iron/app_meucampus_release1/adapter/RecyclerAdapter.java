@@ -24,7 +24,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder>{
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cardapio,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cardapio_old,parent,false);
 
         return new ViewHolder(view);
     }
@@ -48,7 +48,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder>{
         holder.textoJ5.setText(cardapio_classe.getJ5());
         holder.textoJ6.setText(cardapio_classe.getJ6());
 
-        holder.dia_semana.setText(cardapio_classe.getDiaDaSemana());
+        holder.dia_semana.setText(cardapio_classe.getData());
 
     }
 

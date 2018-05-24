@@ -22,6 +22,7 @@ public class NoticiaViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bindData(final Noticias_Classe noticiaa, final OnListClickInteractionListener listener){
+        System.out.println("teste view holder" + noticiaa.getTitulo());
         this.titulo.setText(noticiaa.getTitulo());
         this.titulo.setOnClickListener(new View.OnClickListener() {
             @Override

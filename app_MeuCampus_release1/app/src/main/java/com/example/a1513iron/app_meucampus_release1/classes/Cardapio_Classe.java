@@ -8,9 +8,11 @@ import java.util.Date;
 
 public class Cardapio_Classe {
 
+    private int id;
+    //private String tipo_refeicao;
     private String a1,a2,a3,a4,a5,a6;
     private String j1,j2,j3,j4,j5,j6;
-    private String diaDaSemana;
+    private String data;
 
     public Cardapio_Classe(){
         for(int i = 0; i < 6; i++){
@@ -19,6 +21,22 @@ public class Cardapio_Classe {
         }
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /*public String getTipo_refeicao() {
+        return tipo_refeicao;
+    }
+
+    public void setTipo_refeicao(String tipo_refeicao) {
+        this.tipo_refeicao = tipo_refeicao;
+    }*/
+
     public String getA1() {
         return a1;
     }
@@ -26,7 +44,6 @@ public class Cardapio_Classe {
     public void setA1(String a1) {
         this.a1 = a1;
     }
-
 
     public String getA2() {
         return a2;
@@ -116,12 +133,12 @@ public class Cardapio_Classe {
         this.j6 = j6;
     }
 
-    public String getDiaDaSemana() {
-        return diaDaSemana;
+    public String getData() {
+        return data;
     }
 
-    public void setDiaDaSemana(String diaDaSemana) {
-        this.diaDaSemana = diaDaSemana;
+    public void setData(String data) {
+        this.data = data;
     }
 }
 

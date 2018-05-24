@@ -32,7 +32,8 @@ public class ListaEventosActivity extends SobreActivity implements NavigationVie
     ViewHolder mViewHolder = new ViewHolder();
     private Context mContext;
     private RecuperaDados recd;
-    public static final String URL_ACT = "http://10.0.2.2/appmeucampus/integracao/evento/retornarEventos";
+    //public static final String URL_ACT = "http://10.0.2.2/appmeucampus/integracao/evento/retornarEventos";
+    public static final String URL_ACT = "http://app.bambui.ifmg.edu.br/integracao/evento/retornarEventos";
     private static class ViewHolder{
         RecyclerView recyclerEventos;
     }
@@ -47,26 +48,6 @@ public class ListaEventosActivity extends SobreActivity implements NavigationVie
         //obter o recycler
         this.mViewHolder.recyclerEventos = (RecyclerView) this.findViewById(R.id.recycler_view_eventos);
 
-        // Implementa o evento de click para passar por parâmetro para a ViewHolder
-        OnListClickInteractionListener listener = new OnListClickInteractionListener() {
-            @Override
-            public void onClick(Noticias_Classe noticiaa) {
-            }
-
-            @Override
-            public void onClick(Eventos_Classe eventoo) {
-                System.out.println(eventoo.getData_inicial());
-                Intent intent = new Intent(mContext, MostrarEventoActivity.class);
-                System.out.println("nome: " + eventoo.getNome() + " data: " + eventoo.getData_inicial());
-                intent.putExtra("Evento", eventoo);
-                startActivity(intent);
-            }
-        };
-
-        //definir o adapter
-        RecyclerAdapterEventos eventoAdapter = new RecyclerAdapterEventos(list,listener);
-        this.mViewHolder.recyclerEventos.setAdapter(eventoAdapter);
-
         //definir o layout
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         this.mViewHolder.recyclerEventos.setLayoutManager(linearLayoutManager);
@@ -75,6 +56,22 @@ public class ListaEventosActivity extends SobreActivity implements NavigationVie
         recd.execute();
 
     }
+
+    // Implementa o evento de click para passar por parâmetro para a ViewHolder
+    OnListClickInteractionListener listener = new OnListClickInteractionListener() {
+        @Override
+        public void onClick(Noticias_Classe noticiaa) {
+        }
+
+        @Override
+        public void onClick(Eventos_Classe eventoo) {
+            System.out.println(eventoo.getData_inicial());
+            Intent intent = new Intent(mContext, MostrarEventoActivity.class);
+            System.out.println("nome: " + eventoo.getNome() + " data: " + eventoo.getData_inicial());
+            intent.putExtra("Evento", eventoo);
+            startActivity(intent);
+        }
+    };
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -176,6 +173,9 @@ public class ListaEventosActivity extends SobreActivity implements NavigationVie
             for(int i = 0; i < listaEventos.size();i++){
                 list.add(listaEventos.get(i));
             }
+            //definir o adapter
+            RecyclerAdapterEventos eventoAdapter = new RecyclerAdapterEventos(list,listener);
+            mViewHolder.recyclerEventos.setAdapter(eventoAdapter);
             load.dismiss();
         }
     }

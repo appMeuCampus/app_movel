@@ -77,7 +77,7 @@ public class MainActivity extends SobreActivity implements NavigationView.OnNavi
                     }
                 }
             });
-            //cardview do cardapio, pegando o dia da semana
+            //cardview do cardapio_old, pegando o dia da semana
             TextView diaSemana = (TextView) findViewById(R.id.dia_da_semana);
             Locale local = new Locale("pt", "BR");
             DateFormat df = new SimpleDateFormat("EEEE", local);

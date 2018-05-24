@@ -34,7 +34,8 @@ public class ListaNoticiasActivity extends SobreActivity implements NavigationVi
     ViewHolder mViewHolder = new ViewHolder();
     private Context mContext;
     private RecuperaDados recd;
-    public static final String URL_ACT = "http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias";
+    //public static final String URL_ACT = "http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias";
+    public static final String URL_ACT = "http://app.bambui.ifmg.edu.br/integracao/noticia/retornarNoticias";
     private static class ViewHolder{
         RecyclerView recyclerNoticias;
     }
@@ -50,37 +51,28 @@ public class ListaNoticiasActivity extends SobreActivity implements NavigationVi
         //obter o recycler
         this.mViewHolder.recyclerNoticias = (RecyclerView) this.findViewById(R.id.recycler_view2);
 
-        // Implementa o evento de click para passar por parâmetro para a ViewHolder
-        OnListClickInteractionListener listener = new OnListClickInteractionListener() {
-            @Override
-            public void onClick(Noticias_Classe noticiaa) {
-                Intent intent = new Intent(mContext, MostrarNoticiaActivity.class);
-                intent.putExtra("Noticia", noticiaa);
-                startActivity(intent);
-            }
-
-            @Override
-            public void onClick(Eventos_Classe noticiaa) {
-                
-            }
-        };
-
-
-
-        //definir o adapter
-        RecyclerAdapterNoticias noticiaAdapter = new RecyclerAdapterNoticias(list,listener);
-        this.mViewHolder.recyclerNoticias.setAdapter(noticiaAdapter);
-
         //definir o layout
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         this.mViewHolder.recyclerNoticias.setLayoutManager(linearLayoutManager);
 
-
-
         recd = new RecuperaDados(URL_ACT, "BuscarPorIndex",0);
         recd.execute();
-
     }
+
+    // Implementa o evento de click para passar por parâmetro para a ViewHolder
+    OnListClickInteractionListener listener = new OnListClickInteractionListener() {
+        @Override
+        public void onClick(Noticias_Classe noticiaa) {
+            Intent intent = new Intent(mContext, MostrarNoticiaActivity.class);
+            intent.putExtra("Noticia", noticiaa);
+            startActivity(intent);
+        }
+
+        @Override
+        public void onClick(Eventos_Classe noticiaa) {
+
+        }
+    };
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -139,9 +131,7 @@ public class ListaNoticiasActivity extends SobreActivity implements NavigationVi
                 break;
             }
         }
-
         drawerLayout.closeDrawer(GravityCompat.START);
-
         return true;
     }
 
@@ -155,7 +145,6 @@ public class ListaNoticiasActivity extends SobreActivity implements NavigationVi
         String endereco; //"http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias"
         // por default o endereco vai ser esse pois estava craashando o app se deixasse vazio...
         // mas isso não irá interferir nas demais funções da classe pois é umavariavel q muda toda x q um método de busca é chamado
-
 
         public RecuperaDados(String url, String operacao,int num){
             this.endereco = url;
@@ -181,18 +170,17 @@ public class ListaNoticiasActivity extends SobreActivity implements NavigationVi
                 ArrayList<Noticias_Classe> listaNoticias = new ArrayList<Noticias_Classe>();
                 return listaNoticias;
             }
-
         }
 
         @Override
         protected void onPostExecute(ArrayList<Noticias_Classe> listaNoticias) {
-
             for(int i = 0; i < listaNoticias.size();i++){
                 list.add(listaNoticias.get(i));
             }
+            //definir o adapter
+            RecyclerAdapterNoticias noticiaAdapter = new RecyclerAdapterNoticias(list,listener);
+            mViewHolder.recyclerNoticias.setAdapter(noticiaAdapter);
             load.dismiss();
-
         }
-
     }
 }

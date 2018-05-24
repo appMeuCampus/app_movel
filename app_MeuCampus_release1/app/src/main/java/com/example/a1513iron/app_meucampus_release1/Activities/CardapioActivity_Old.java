@@ -1,80 +1,74 @@
 package com.example.a1513iron.app_meucampus_release1.Activities;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.Toast;
 
-import com.example.a1513iron.app_meucampus_release1.Conexao.Teste_Activity;
 import com.example.a1513iron.app_meucampus_release1.R;
+import com.example.a1513iron.app_meucampus_release1.Conexao.Teste_Activity;
+import com.example.a1513iron.app_meucampus_release1.classes.Cardapio_Classe;
+import com.example.a1513iron.app_meucampus_release1.adapter.RecyclerAdapter;
 
-import java.util.Calendar;
 
-public class CardapioActivity extends SobreActivity implements NavigationView.OnNavigationItemSelectedListener {
+import java.util.ArrayList;
+import java.util.List;
 
-    private Button botao;
-    String data;
-    private Context mContext;
+public class CardapioActivity_Old extends SobreActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    static final int DATE_DIALOG_ID = 0;
+    private RecyclerView recyclerView;
+    private RecyclerAdapter adapter;
+    private List<Cardapio_Classe> list = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cardapio);
-        botao = (Button) findViewById(R.id.btn_cardapio);
-        botao.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (v == botao)
-                    showDialog(DATE_DIALOG_ID);
-            }
-        });
-        this.mContext = this;
+        setContentView(R.layout.activity_cardapio_old);
+
         CreateDrawerLayout();
 
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        Cardapio_Classe c1 = new Cardapio_Classe();
+        c1.setA1("Alface");c1.setA2("Beterraba");c1.setA3("Abóbora");c1.setA4("Arroz Carreteiro");c1.setA5("Feijao");
+        c1.setJ1("Alface");c1.setJ2("Beterraba");c1.setJ3("Abóbora");c1.setJ4("Arroz Carreteiro");c1.setJ5("Feijao");
+        c1.setData("segunda-feira");
+
+        Cardapio_Classe c2 = new Cardapio_Classe();
+        c2.setA1("Chicória");c2.setA2("Beterraba Cozida");c2.setA3("Costelinha");c2.setA4("Mandioca");c2.setA5("Arroz");c2.setA6("Feijão");
+        c2.setJ1("Chicória");c2.setJ2("Beterraba Cozida");c2.setJ3("Costelinh");c2.setJ4("Mandioca");c2.setJ5("Feijao");c2.setJ6("Arroz");
+        c2.setData("terça-feira");
+
+        Cardapio_Classe c3 = new Cardapio_Classe();
+        c3.setData("quarta-feira");
+
+        Cardapio_Classe c4 = new Cardapio_Classe();
+        c4.setData("quinta-feira");
+
+        Cardapio_Classe c5 = new Cardapio_Classe();
+        c5.setData("sexta-feira");
+
+        Cardapio_Classe c6 = new Cardapio_Classe();
+        c6.setData("sábado");
+
+
+        list.add(c1);
+        list.add(c2);
+        list.add(c3);
+        list.add(c4);
+        list.add(c5);
+        list.add(c6);
+
+        adapter = new RecyclerAdapter(list);
+        recyclerView.setAdapter(adapter);
     }
 
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        Calendar calendario = Calendar.getInstance();
-
-        int ano = calendario.get(Calendar.YEAR);
-        int mes = calendario.get(Calendar.MONTH);
-        int dia = calendario.get(Calendar.DAY_OF_MONTH);
-
-        switch (id) {
-            case DATE_DIALOG_ID:
-                return new DatePickerDialog(this, mDateSetListener, ano, mes,
-                        dia);
-        }
-        return null;
-    }
-
-    private DatePickerDialog.OnDateSetListener mDateSetListener =
-            new DatePickerDialog.OnDateSetListener() {
-                public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                      int dayOfMonth) {
-                    data = ((dayOfMonth < 10)? "0" + String.valueOf(dayOfMonth):String.valueOf(dayOfMonth)) + "/"
-                            +((monthOfYear + 1 < 10)? "0" + String.valueOf(monthOfYear + 1):String.valueOf(monthOfYear + 1)) + "/" + String.valueOf(year);
-                    Toast.makeText(CardapioActivity.this,
-                            "DATA =" + data, Toast.LENGTH_SHORT)
-                            .show();
-                    Intent intent = new Intent(mContext, MostrarCardapioActivity.class);
-                    System.out.println(data);
-                    intent.putExtra("Data", data);
-                    startActivity(intent);
-                }
-            };
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -102,7 +96,7 @@ public class CardapioActivity extends SobreActivity implements NavigationView.On
             }
             case R.id.menu_cardapio: {
                 Toast.makeText(this, "Menu Cardapio", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(),CardapioActivity.class);
+                Intent intent = new Intent(getApplicationContext(),CardapioActivity_Old.class);
                 startActivity(intent);
                 break;
             }

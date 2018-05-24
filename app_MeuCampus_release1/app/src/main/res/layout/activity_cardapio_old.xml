@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <include layout="@layout/cardapio" />
+    <include layout="@layout/cardapio_old" />
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigationView"
@@ -17,5 +17,6 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/menu_nav"/>
+
 
 </android.support.v4.widget.DrawerLayout>

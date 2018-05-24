@@ -6,63 +6,63 @@ import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.a1513iron.app_meucampus_release1.Conexao.Teste_Activity;
-import com.example.a1513iron.app_meucampus_release1.Conexao.Utils_objEventos;
+import com.example.a1513iron.app_meucampus_release1.Conexao.Utils_objCardapio;
 import com.example.a1513iron.app_meucampus_release1.R;
-import com.example.a1513iron.app_meucampus_release1.classes.Eventos_Classe;
+import com.example.a1513iron.app_meucampus_release1.classes.Cardapio_Classe;
 
 import org.json.JSONException;
 
-import java.util.ArrayList;
+public class MostrarCardapioActivity extends SobreActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-public class MostrarEventoActivity extends SobreActivity implements NavigationView.OnNavigationItemSelectedListener {
-
-    private TextView nomeEvento;
-
-    private TextView data_inicial;
-    private TextView hora_inicio;
-    private TextView hora_termino;
-    private TextView data_final;
-    private TextView descricao;
-    private Eventos_Classe eventoAtual;
-    private RecuperaDados recd;
-
-    //public static final String URL_ACT = "http://10.0.2.2/appmeucampus/integracao/evento/retornarEvento?id=";
-    public static final String URL_ACT = "http://app.bambui.ifmg.edu.br/integracao/evento/retornarEvento?id=";
+    private TextView textoA1;
+    private TextView textoJ1;
+    private TextView textoA2;
+    private TextView textoJ2;
+    private TextView textoA3;
+    private TextView textoJ3;
+    private TextView textoA4;
+    private TextView textoJ4;
+    private TextView textoA5;
+    private TextView textoJ5;
+    private TextView textoA6;
+    private TextView textoJ6;
+    private TextView dia_semana;
+    //private static final String URL = "http://10.0.2.2/appmeucampus/integracao/cardapio/retornarCardapiosPorData?data=";
+    private static final String URL = "http://app.bambui.ifmg.edu.br/integracao/cardapio/retornarCardapiosPorData?data=";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mostrar_evento);
-
+        setContentView(R.layout.activity_mostrar_cardapio);
         CreateDrawerLayout();
 
-        nomeEvento = (TextView) findViewById(R.id.textViewNomeEventoAtual);
-        hora_inicio = (TextView) findViewById(R.id.textViewHoraInicio);
-        hora_termino = (TextView) findViewById(R.id.textViewHoraTermino);
-        data_inicial = (TextView) findViewById(R.id.textViewDataInicial);
-        data_final = (TextView) findViewById(R.id.textViewDataFinal);
-        descricao = (TextView) findViewById(R.id.textViewDescricaoEvento);
-
-        nomeEvento.setText("default");
-        hora_inicio.setText("default");
-        hora_termino.setText("default");
-        data_inicial.setText("default");
-        data_final.setText("defaul");
-        descricao.setText("default");
-
+        //identificando os componentes a serem alterados após a recuperação dos dados
+        this.textoA1 = (TextView) findViewById(R.id.a1);
+        this.textoJ1 = (TextView) findViewById(R.id.j1);
+        this.textoA2 = (TextView) findViewById(R.id.a2);
+        this.textoJ2 = (TextView) findViewById(R.id.j2);
+        this.textoA3 = (TextView) findViewById(R.id.a3);
+        this.textoJ3 = (TextView) findViewById(R.id.j3);
+        this.textoA4 = (TextView) findViewById(R.id.a4);
+        this.textoJ4 = (TextView) findViewById(R.id.j4);
+        this.textoA5 = (TextView) findViewById(R.id.a5);
+        this.textoJ5 = (TextView) findViewById(R.id.j5);
+        this.textoA6 = (TextView) findViewById(R.id.a6);
+        this.textoJ6 = (TextView) findViewById(R.id.j6);
+        this.dia_semana = (TextView) findViewById(R.id.dia_da_semana);
+        //recuperando data da activity CardapioActivity
         Intent it = getIntent();
-        eventoAtual = it.getParcelableExtra("Evento");
-
-        recd = new RecuperaDados(URL_ACT, "BuscarPorID",eventoAtual.getId());
-        recd.execute();
-
-
+        String data = it.getStringExtra("Data");
+        //recuperando dados do serviço web
+        RecuperaDados teste = new RecuperaDados(this.URL,data);//"08/05/2018"
+        teste.execute();
 
 
     }
@@ -131,46 +131,53 @@ public class MostrarEventoActivity extends SobreActivity implements NavigationVi
         return true;
     }
 
-    public class RecuperaDados extends AsyncTask<Void, Void, ArrayList<Eventos_Classe>> {
+    public class RecuperaDados extends AsyncTask<Void, Void, Cardapio_Classe> {
 
         private ProgressDialog load;
-        private int num;
-        String operacao;
+        private String data;
         String endereco;
 
-        public RecuperaDados(String url, String operacao, int num) {
+        public RecuperaDados(String url, String data) {
             this.endereco = url;
-            this.operacao = operacao;
-            this.num = num;
+            this.data = data;
         }
 
         @Override
         protected void onPreExecute() {
-            load = ProgressDialog.show(MostrarEventoActivity.this, "Por favor Aguarde ...", "Recuperando Informações do Servidor...");
+            load = ProgressDialog.show(MostrarCardapioActivity.this, "Por favor Aguarde ...", "Recuperando Informações do Servidor...");
         }
 
         @Override
-        protected ArrayList<Eventos_Classe> doInBackground(Void... params) {
-            Utils_objEventos util = new Utils_objEventos();
+        protected Cardapio_Classe doInBackground(Void... params) {
+            Utils_objCardapio util = new Utils_objCardapio();
             try {
-                return util.getInformacaoEventos(endereco, operacao, num);
+                return util.getInformacaoCardapio(endereco+data);
             } catch (JSONException e) {
                 e.printStackTrace();
-                ArrayList<Eventos_Classe> eventos = new ArrayList<>();
-                eventos.add(new Eventos_Classe());
-                return eventos;
+                Cardapio_Classe c = new Cardapio_Classe();
+                return c;
             }
         }
 
         @Override
-        protected void onPostExecute(ArrayList<Eventos_Classe> listaEventos) {
-            nomeEvento.setText(listaEventos.get(0).getNome());
-            data_inicial.setText(listaEventos.get(0).getData_inicial());
-            data_final.setText(listaEventos.get(0).getData_final());
-            descricao.setText(listaEventos.get(0).getDescricao());
-            hora_inicio.setText(listaEventos.get(0).getHora_inicio());
-            hora_termino.setText(listaEventos.get(0).getHora_termino());
+        protected void onPostExecute(Cardapio_Classe c) {
+            textoA1.setText(c.getA1());
+            textoA2.setText(c.getA2());
+            textoA3.setText(c.getA3());
+            textoA4.setText(c.getA4());
+            textoA5.setText(c.getA5());
+            textoA6.setText(c.getA6());
+
+            textoJ1.setText(c.getJ1());
+            textoJ2.setText(c.getJ2());
+            textoJ3.setText(c.getJ3());
+            textoJ4.setText(c.getJ4());
+            textoJ5.setText(c.getJ5());
+            textoJ6.setText(c.getJ6());
+
+            dia_semana.setText(c.getData());
             load.dismiss();
         }
     }
+
 }

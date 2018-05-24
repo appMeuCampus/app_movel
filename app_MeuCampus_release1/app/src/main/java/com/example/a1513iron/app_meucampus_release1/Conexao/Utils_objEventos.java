@@ -47,6 +47,7 @@ public class Utils_objEventos {
 
         String json;
         json = NetworkUtils.getJSONFromAPI(url + id);
+        Log.i("evento json:","oi" + json);
         ArrayList<Eventos_Classe> listaEventos = new ArrayList<Eventos_Classe>();
         Eventos_Classe eventoo = new Eventos_Classe();
 
@@ -56,7 +57,10 @@ public class Utils_objEventos {
                 eventoo.setId((jsonObj.getJSONObject(i).getInt("id")));
                 eventoo.setNome(jsonObj.getJSONObject(i).getString("nome"));
                 eventoo.setData_inicial(jsonObj.getJSONObject(i).getString("data_inicial"));
+                eventoo.setData_final(jsonObj.getJSONObject(i).getString("data_final"));
                 eventoo.setDescricao(jsonObj.getJSONObject(i).getString("descricao"));
+                eventoo.setHora_inicio(jsonObj.getJSONObject(i).getString("hora_inicial"));
+                eventoo.setHora_termino(jsonObj.getJSONObject(i).getString("hora_final"));
                 eventoo.numero_de_eventos = jsonObj.length();
 
             }
@@ -73,9 +77,7 @@ public class Utils_objEventos {
             return BuscarPorIndex(url,num);
         }else if(operacao == "BuscarPorID"){
             return BuscarPorID(url,num);
-        }/*else if(operacao == "BuscarTexto") {
-            return BuscarTexto(url,num);
-        }*/else{
+        }else{
             Eventos_Classe evento = new Eventos_Classe();
             evento.setNome("OPERAÇÃO SOLICITADA INVÁLIDA");
             evento.setId(-2);

@@ -29,12 +29,41 @@
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/textViewDataEventoAtual"
+            android:id="@+id/textViewDataInicial"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:text="texto"
             android:textAppearance="@android:style/TextAppearance.Holo.Widget.TextView" />
+        <TextView
+            android:id="@+id/textViewDataFinal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="texto"
+            android:textAppearance="@android:style/TextAppearance.Holo.Widget.TextView" />
+        <TextView
+            android:id="@+id/textViewHoraInicio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="texto"
+            android:textAppearance="@android:style/TextAppearance.Holo.Widget.TextView" />
+        <TextView
+            android:id="@+id/textViewHoraTermino"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="texto"
+            android:textAppearance="@android:style/TextAppearance.Holo.Widget.TextView" />
+        <TextView
+            android:id="@+id/textViewDescricaoEvento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="texto"
+            android:textAppearance="@android:style/TextAppearance.Holo.Widget.TextView" />
+
 
     </LinearLayout>
 

@@ -21,4 +21,5 @@
     <string name="valor_cardapio_j5">arroz</string>
     <string name="valor_cardapio_a6">feijão</string>
     <string name="valor_cardapio_j6">feijão</string>
+    <string name="pick_date">pick_date</string>
 </resources>

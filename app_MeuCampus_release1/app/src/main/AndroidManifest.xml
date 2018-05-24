@@ -43,12 +43,14 @@
         <activity android:name=".Activities.MostrarNoticiaActivity" />
         <activity android:name=".Activities.ListaNoticiasActivity" />
         <activity android:name=".Conexao.Teste_Activity" />
-        <activity android:name=".Activities.CardapioActivity" />
+        <activity android:name=".Activities.CardapioActivity_Old" />
         <activity android:name=".Activities.SobreActivity" />
         <activity android:name=".Activities.HorarioOnibusActivity" />
         <activity android:name=".Activities.MostraHorarioBusaoActivity" />
         <activity android:name=".Activities.ListaEventosActivity" />
-        <activity android:name=".Activities.MostrarEventoActivity"></activity>
+        <activity android:name=".Activities.MostrarEventoActivity" />
+        <activity android:name=".Activities.CardapioActivity" />
+        <activity android:name=".Activities.MostrarCardapioActivity"></activity>
     </application>
 
 </manifest>

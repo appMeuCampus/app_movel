@@ -27,6 +27,7 @@ public class MostrarNoticiaActivity extends SobreActivity implements NavigationV
     private TextView tituloAtual;
     private TextView textoAtual;
     private Noticias_Classe noticiaAtual;
+    public static final String URL_ACT = "http://app.bambui.ifmg.edu.br/integracao/noticia/retornarNoticia?id=";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class MostrarNoticiaActivity extends SobreActivity implements NavigationV
         //recuperando os dados passado da activity que chamou essa activity
         Intent it = getIntent();
         noticiaAtual = it.getParcelableExtra("Noticia");
-        RecuperaDados rcd = new RecuperaDados("http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticia?id=","BuscarTexto",noticiaAtual.getID());
+        RecuperaDados rcd = new RecuperaDados(URL_ACT,"BuscarTexto",noticiaAtual.getID());
         rcd.execute();
 
     }
