@@ -10,6 +10,7 @@ import android.support.v4.view.GravityCompat;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -20,13 +21,14 @@ import com.example.a1513iron.app_meucampus_release1.R;
 import com.example.a1513iron.app_meucampus_release1.adapter.RecyclerAdapterEventos;
 import com.example.a1513iron.app_meucampus_release1.classes.Eventos_Classe;
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
+import com.example.a1513iron.app_meucampus_release1.classes.Toolbar_Classe;
 
 import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaEventosActivity extends SobreActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class ListaEventosActivity extends Toolbar_Classe {
 
     private List<Eventos_Classe> list = new ArrayList<>();
     ViewHolder mViewHolder = new ViewHolder();
@@ -43,6 +45,10 @@ public class ListaEventosActivity extends SobreActivity implements NavigationVie
         setContentView(R.layout.activity_lista_eventos);
 
         this.mContext = this;
+
+        this.toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(this.toolbar);
+        getSupportActionBar().setTitle("Eventos");
         CreateDrawerLayout();
 
         //obter o recycler
@@ -72,70 +78,6 @@ public class ListaEventosActivity extends SobreActivity implements NavigationVie
             startActivity(intent);
         }
     };
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-        switch(item.getItemId()) {
-
-            case R.id.menu_meucampus: {
-                Toast.makeText(this, "Menu MeuCampus", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(intent);
-                break;
-            }
-
-            case R.id.menu_noticias: {
-                Toast.makeText(this, "Menu Noticias", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(),ListaNoticiasActivity.class);
-                startActivity(intent);
-                break;
-            }
-            case R.id.menu_eventos: {
-                Toast.makeText(this, "Menu Evntos", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(),ListaEventosActivity.class);
-                startActivity(intent);
-                break;
-            }
-            case R.id.menu_cardapio: {
-                Toast.makeText(this, "Menu Cardapio", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(),CardapioActivity.class);
-                startActivity(intent);
-                break;
-            }
-            case R.id.menu_busao: {
-                Toast.makeText(this, "Menu Busão", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(),HorarioOnibusActivity.class);
-                startActivity(intent);
-                break;
-            }
-            case R.id.menu_mapa: {
-                Toast.makeText(this, "Menu Mapa", Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
-                startActivity(intent);
-                break;
-            }
-            case R.id.menu_teste: {
-                Toast.makeText(this, "Menu Teste", Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(getApplicationContext(), Teste_Activity.class);
-                startActivity(intent);
-                break;
-            }
-            case R.id.menu_sobre: {
-                Toast.makeText(this, "Menu Teste", Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(getApplicationContext(), SobreActivity.class);
-                startActivity(intent);
-                break;
-            }
-        }
-
-        drawerLayout.closeDrawer(GravityCompat.START);
-
-        return true;
-    }
 
     public class RecuperaDados extends AsyncTask<Void, Void, ArrayList<Eventos_Classe>> {
 

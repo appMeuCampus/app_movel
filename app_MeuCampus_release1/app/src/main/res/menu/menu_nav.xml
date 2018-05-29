@@ -7,7 +7,6 @@
             android:id="@+id/menu_meucampus"
             android:icon="@drawable/ic_home"/>
 
-
         <item android:title="Notícias"
             android:id="@+id/menu_noticias"
             android:icon="@drawable/ic_news"/>
@@ -15,6 +14,9 @@
         <item android:title="Eventos"
             android:id="@+id/menu_eventos"
             android:icon="@drawable/ic_action_name"/>
+        <item android:title="Calendário Acadêmico"
+            android:id="@+id/menu_calendario_academico"
+            android:icon="@drawable/ic_calendario_academico"/>
 
         <item android:title="Cardápio"
             android:id="@+id/menu_cardapio"

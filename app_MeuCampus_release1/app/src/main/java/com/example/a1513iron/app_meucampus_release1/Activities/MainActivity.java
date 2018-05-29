@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,8 @@ import com.example.a1513iron.app_meucampus_release1.Conexao.Utils_objNoticia;
 import com.example.a1513iron.app_meucampus_release1.R;
 import com.example.a1513iron.app_meucampus_release1.Conexao.Teste_Activity;
 import com.example.a1513iron.app_meucampus_release1.classes.Noticias_Classe;
+import com.example.a1513iron.app_meucampus_release1.classes.Toolbar_Classe;
+
 import org.json.JSONException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -28,7 +31,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class MainActivity extends SobreActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends Toolbar_Classe{
 
     public Noticias_Classe ntc = new Noticias_Classe();
     private ListView listview1;
@@ -42,6 +45,9 @@ public class MainActivity extends SobreActivity implements NavigationView.OnNavi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        this.toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(this.toolbar);
+        getSupportActionBar().setTitle("Feed");
         CreateDrawerLayout();
 
         //lista de noticias
@@ -49,7 +55,7 @@ public class MainActivity extends SobreActivity implements NavigationView.OnNavi
         opcoes = new ArrayList<>();
 
         recd = new RecuperaDados(URL_ACT, "BuscarPorIndex",0);
-        recd.execute();
+        //recd.execute();
 
         adaptador = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, opcoes);
         listview1.setAdapter(adaptador);
@@ -85,72 +91,6 @@ public class MainActivity extends SobreActivity implements NavigationView.OnNavi
             diaSemana.setText(df.format(d));
 
     }
-
-    //maquina de estados dos menus do drawerLayout
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-        switch(item.getItemId()) {
-
-            case R.id.menu_meucampus: {
-                Toast.makeText(this, "Menu MeuCampus", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(intent);
-                break;
-            }
-
-            case R.id.menu_noticias: {
-                Toast.makeText(this, "Menu Noticias", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(),ListaNoticiasActivity.class);
-                startActivity(intent);
-                break;
-            }
-            case R.id.menu_eventos: {
-                Toast.makeText(this, "Menu Evntos", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(),ListaEventosActivity.class);
-                startActivity(intent);
-                break;
-            }
-            case R.id.menu_cardapio: {
-                Toast.makeText(this, "Menu Cardapio", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(),CardapioActivity.class);
-                startActivity(intent);
-                break;
-            }
-            case R.id.menu_busao: {
-                Toast.makeText(this, "Menu Busão", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(),HorarioOnibusActivity.class);
-                startActivity(intent);
-                break;
-            }
-            case R.id.menu_mapa: {
-                Toast.makeText(this, "Menu Mapa", Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
-                startActivity(intent);
-                break;
-            }
-            case R.id.menu_teste: {
-                Toast.makeText(this, "Menu Teste", Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(getApplicationContext(), Teste_Activity.class);
-                startActivity(intent);
-                break;
-            }
-            case R.id.menu_sobre: {
-                Toast.makeText(this, "Menu Teste", Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(getApplicationContext(), SobreActivity.class);
-                startActivity(intent);
-                break;
-            }
-        }
-
-        drawerLayout.closeDrawer(GravityCompat.START);
-
-        return true;
-    }
-
 
     public class RecuperaDados extends AsyncTask<Void, Void, ArrayList<Noticias_Classe>> {
 

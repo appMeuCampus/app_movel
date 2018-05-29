@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="5dip"
+            android:shrinkColumns="1"
+            android:stretchColumns="*">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="1dp"
+                android:background="#BEBEBE"
+                android:fontFamily="sans-serif-condensed"
+                android:padding="4dip"
+                android:text="Posto Girassol"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TableRow android:background="#fff">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="1dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:fontFamily="sans-serif-condensed"
+                    android:padding="4dip"
+                    android:text="Ida IFMG"
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:fontFamily="sans-serif-condensed"
+                    android:padding="4dip"
+                    android:text="Retorno IFMG"
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow android:background="#fff">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="1dp"
+                    android:background="@color/colorPrimary"
+                    android:fontFamily="sans-serif-condensed"
+                    android:padding="4dip"
+                    android:text="06:25"
+                    android:textAlignment="center"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/colorPrimary"
+                    android:fontFamily="sans-serif-condensed"
+                    android:gravity="right"
+                    android:padding="4dip"
+                    android:text="07:10"
+                    android:textAlignment="center"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow android:background="#fff">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="1dp"
+                    android:background="@color/colorPrimary"
+                    android:fontFamily="sans-serif-condensed"
+                    android:padding="4dip"
+                    android:text="10:30"
+                    android:textAlignment="center"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/colorPrimary"
+                    android:fontFamily="sans-serif-condensed"
+                    android:gravity="right"
+                    android:padding="4dip"
+                    android:text="11:10"
+                    android:textAlignment="center"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+            </TableRow>
+            <TableRow android:background="#fff">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="1dp"
+                    android:background="@color/colorPrimary"
+                    android:fontFamily="sans-serif-condensed"
+                    android:padding="4dip"
+                    android:text="12:30"
+                    android:textAlignment="center"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/colorPrimary"
+                    android:fontFamily="sans-serif-condensed"
+                    android:gravity="right"
+                    android:padding="4dip"
+                    android:text="13:10"
+                    android:textAlignment="center"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+            </TableRow>
+            <TableRow android:background="#fff">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="1dp"
+                    android:background="@color/colorPrimary"
+                    android:fontFamily="sans-serif-condensed"
+                    android:padding="4dip"
+                    android:text="15:30"
+                    android:textAlignment="center"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/colorPrimary"
+                    android:fontFamily="sans-serif-condensed"
+                    android:gravity="right"
+                    android:padding="4dip"
+                    android:text="16:10"
+                    android:textAlignment="center"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+            </TableRow>
+            <TableRow android:background="#fff">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="1dp"
+                    android:background="@color/colorPrimary"
+                    android:fontFamily="sans-serif-condensed"
+                    android:padding="4dip"
+                    android:text="18:30"
+                    android:textAlignment="center"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/colorPrimary"
+                    android:fontFamily="sans-serif-condensed"
+                    android:gravity="right"
+                    android:padding="4dip"
+                    android:text="19:10"
+                    android:textAlignment="center"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+            </TableRow>
+            <TableRow android:background="#fff">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="1dp"
+                    android:background="@color/colorPrimary"
+                    android:fontFamily="sans-serif-condensed"
+                    android:padding="4dip"
+                    android:text="21:15"
+                    android:textAlignment="center"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/colorPrimary"
+                    android:fontFamily="sans-serif-condensed"
+                    android:gravity="right"
+                    android:padding="4dip"
+                    android:text="-"
+                    android:textAlignment="center"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="2dp"
+                android:background="@color/colorPrimaryDark"
+                android:fontFamily="sans-serif-condensed"
+                android:padding="4dip"
+                android:text="Percurso (06:25)"
+                android:textAlignment="center"
+                android:textColor="#fff"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="2dp"
+                android:background="@color/colorPrimary"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="right"
+                android:padding="4dip"
+                android:text="Posto Girassol, Cerrado, Rua Santos Dumont, Sorveteria do Jesus, Quartel(PMMG), Rua do Comércio, Rua Alzira Torres."
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="2dp"
+                android:background="@color/colorPrimaryDark"
+                android:fontFamily="sans-serif-condensed"
+                android:padding="4dip"
+                android:text="Percurso (21:15)"
+                android:textAlignment="center"
+                android:textColor="#fff"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="2dp"
+                android:background="@color/colorPrimary"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="right"
+                android:padding="4dip"
+                android:text="(somente aos domingos)Rodoviária, Rua Santos Dumont, Sorveteria do Jesus, Quartel(PMMG), Rua do Comércio, Rua Alzira Torres."
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="2dp"
+                android:background="@color/colorPrimaryDark"
+                android:fontFamily="sans-serif-condensed"
+                android:padding="4dip"
+                android:text="Percurso (outros horários)"
+                android:textAlignment="center"
+                android:textColor="#fff"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="2dp"
+                android:background="@color/colorPrimary"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="right"
+                android:padding="4dip"
+                android:text="Posto Girassol, Rua Santos Dumont, Sorveteria do Jesus, Quartel(PMMG), Rua do Comércio, Rua Alzira Torres."
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
+
+        </TableLayout>
+    </ScrollView>
+</LinearLayout>
