@@ -13,58 +13,178 @@
         android:background="?attr/colorPrimary"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textViewNomeEventoAtual"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Titulo"
-            android:textAppearance="@android:style/TextAppearance.Holo.Large"
-            android:textSize="24sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textViewDataInicial"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="texto"
-            android:textAppearance="@android:style/TextAppearance.Holo.Widget.TextView" />
-        <TextView
-            android:id="@+id/textViewDataFinal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="texto"
-            android:textAppearance="@android:style/TextAppearance.Holo.Widget.TextView" />
-        <TextView
-            android:id="@+id/textViewHoraInicio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="texto"
-            android:textAppearance="@android:style/TextAppearance.Holo.Widget.TextView" />
-        <TextView
-            android:id="@+id/textViewHoraTermino"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="texto"
-            android:textAppearance="@android:style/TextAppearance.Holo.Widget.TextView" />
-        <TextView
-            android:id="@+id/textViewDescricaoEvento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="texto"
-            android:textAppearance="@android:style/TextAppearance.Holo.Widget.TextView" />
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dip"
+                android:shrinkColumns="*"
+                android:stretchColumns="*">
 
+                <TextView
+                    android:id="@+id/textViewNomeEventoAtual"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Titulo"
+                    android:textAppearance="@android:style/TextAppearance.Holo.Large"
+                    android:textSize="24sp" />
 
-    </LinearLayout>
+                <TableRow android:background="#fff">
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_span="2"
+                        android:padding="4dip"
+                        android:text="Início"
+                        android:textAlignment="center"
+                        android:textColor="#000"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_span="4"
+                        android:padding="4dip"
+                        android:text="Término"
+                        android:textAlignment="center"
+                        android:textColor="#000"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </TableRow>
+
+                <TableRow android:background="#fff">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginTop="8dp"
+                        android:textAlignment="textEnd"
+                        android:background="#fff"
+                        android:text="Data: "
+                        android:textColor="#000"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textViewDataInicial"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginTop="8dp"
+                        android:text="xx/xx/xxxx"
+                        android:textAppearance="@android:style/TextAppearance.Holo.Widget.TextView" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:textAlignment="textEnd"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Data: "
+                        android:textColor="#000"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textViewDataFinal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="xx/xx/xxxx"
+                        android:textAppearance="@android:style/TextAppearance.Holo.Widget.TextView" />
+                </TableRow>
+
+                <TableRow android:background="#fff">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginTop="8dp"
+                        android:textAlignment="textEnd"
+                        android:background="#fff"
+                        android:text="Horário: "
+                        android:textColor="#000"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/textViewHoraInicio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginTop="8dp"
+                        android:text="xx/xx/xxxx"
+                        android:textAppearance="@android:style/TextAppearance.Holo.Widget.TextView" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginTop="8dp"
+                        android:textAlignment="textEnd"
+                        android:text="Horário: "
+                        android:textColor="#000"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textViewHoraTermino"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="xx/xx/xxxx"
+                        android:textAppearance="@android:style/TextAppearance.Holo.Widget.TextView" />
+                </TableRow>
+
+                <TextView
+                    android:id="@+id/textViewDescricaoEvento"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="Descrição"
+                    android:textAppearance="@android:style/TextAppearance.Holo.Widget.TextView" />
+
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

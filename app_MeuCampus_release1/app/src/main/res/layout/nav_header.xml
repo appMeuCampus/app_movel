@@ -1,26 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
+    android:layout_height="match_parent"
     android:background="#66BB6A"
     android:gravity="bottom"
     android:orientation="vertical"
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
-    
-    <ImageView
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/logoteste"
-        />
-    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:paddingTop="16dp"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/logoteste"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MeuCampus"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="38dp"
+            android:layout_marginBottom="10dp"/>
+
+    </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Campus\nBambuí"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:layout_marginTop="8dp"/>
-    
+        android:layout_marginLeft="2dp"/>
 
 </LinearLayout>

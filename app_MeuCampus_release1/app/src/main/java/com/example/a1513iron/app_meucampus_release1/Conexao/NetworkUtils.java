@@ -18,7 +18,7 @@ public class NetworkUtils {
         try {
             URL apiEnd = new URL(url);
             int codigoResposta;
-            HttpURLConnection conexao = (HttpURLConnection) apiEnd.openConnection();;
+            HttpURLConnection conexao = (HttpURLConnection) apiEnd.openConnection();
             InputStream is;
 
             conexao.setRequestMethod("GET");
