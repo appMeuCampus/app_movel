@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -35,8 +36,6 @@ import java.util.Locale;
 
 public class MainActivity extends Toolbar_Classe{
 
-
-    private  TextView titulo;
     private ImageView imgfeed;
 
     @Override
@@ -46,10 +45,13 @@ public class MainActivity extends Toolbar_Classe{
 
         this.toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(this.toolbar);
-        getSupportActionBar().setTitle("Feed");
+        getSupportActionBar().setTitle("Principal");
         CreateDrawerLayout();
         imgfeed = findViewById(R.id.imgfeed);
-
+        WebView wv = (WebView) findViewById(R.id.webviewfeed);
+        wv.getSettings().setJavaScriptEnabled(true);
+        wv.getSettings().setSupportZoom(false);//recomendado pelo android pois n sabe como ira se comportar caso dê zoom
+        wv.loadData(getString(R.string.main), "text/html; charset=utf-8", "utf-8");
 
     }
 }

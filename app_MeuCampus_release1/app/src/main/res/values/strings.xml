@@ -1,4 +1,70 @@
 <resources>
+    <string name="main">
+        <![CDATA[
+        <html>
+            <head></head>
+            <body style="text-align:justify;color:black;font-size:16px;background-color:#eeeeee;>
+                <p>Nossa história inicia-se com o Posto Agropecuário, em 1968, e, desde então, foram
+                várias as transformações que moldaram, ao longo do tempo, uma instituição de sucesso até
+                os dias atuais, onde os alunos têm a oportunidade de fazer para aprender e aprender para
+                fazer! O ano de 2018 inicia com a promessa de ser um marco na história do Instituto
+                Federal de Educação, Ciência e Tecnologia de Minas Gerais - Campus Bambuí, pois
+                estamos comemorando Jubileu de Ouro.</p>
+
+                <p>Para celebrarmos este momento grandioso, foi criada a Comissão dos 50 Anos,
+                composta por alunos e servidores do Campus. O objetivo dessa comissão é contribuir para
+                que tenhamos comemorações memoráveis. Todos os eventos realizados durante este ano
+                terão como foco a celebração dos 50 anos do Campus Bambuí. No mês de abril, tivemos a
+                Semana da Família Agrícola, uma junção do Fest Milho e do Dia do Leite, que, além de
+                palestrantes brilhantes, trouxe à nossa instituição a Feira da Família Agrícola, uma feira
+                gastronômica que contou com a participação dos produtores rurais da região. No mês de
+                maio, tivemos dois eventos importantes: Mulheres que Inspiram, uma realização da DIREC,
+                e a III Semana de Inclusão, organizada pelo NAPNEE, que, ao longo dos anos, tem
+                contribuído para sermos uma instituição inclusiva e que respeita a diversidade.</p>
+
+                <p>Mas nossas maiores expectativas estão concentradas para o mês do aniversário do
+                Campus. Agosto promete nos emocionar, fazendo-nos voltar ao “Túnel do Tempo” para
+                rememorarmos lembranças que nos marcaram ao longo desses 50 anos. A sua história
+                será protagonista deste momento especial! Vamos vibrar com o Encontro dos Ex-alunos,
+                sonhar com o Cine Solar. A abertura oficial terá grandes surpresas; teremos também uma
+                celebração ecumênica para agradecermos por todas as conquistas ao longo destes anos.
+                Queremos motivar a todos a participarem da Gincana dos 50 Anos! Muitas alegrias nos
+                aguardam na semana de comemoração oficial, entre os dias 18 e 24 de agosto. Se prepare,
+                para que juntos, brindemos este momento ímpar no Baile dos 50 Anos!</p>
+
+                <p>Teremos o orgulho, no mês de setembro, de sediarmos a Olimpíada Brasileira de
+                Agropecuária. E toda essa história será presenteada com a publicação do livro que contará
+                a história do nosso Campus, com contribuições dos nossos historiadores, funcionários e
+                outro grande escritor da nossa região.</p>
+
+                <p>As comemorações continuarão! Tudo isso é somente o início da alegria de sermos
+                IFMG! Do privilégio de estarmos no Campus Bambuí! Da emoção de vivenciar experiências
+                únicas em cada espaço deste lindo Campus! Do orgulho de fazer parte desta história!
+                Juntos, podemos ir mais longe! Você não pode ficar de fora! Participe dos eventos
+                preparados com muito carinho especialmente para você!</p>
+            </body>
+        </html>
+        ]]>
+    </string>
+    <string name="sobre">
+        <![CDATA[
+        <html>
+            <head></head>
+            <body style=text-align:justify;color:black;font-size:16px;background-color:#eeeeee;>
+                <p>A proposta é que ele seja um novo meio de comunicação entre a Instituição e seus alunos, professores e funcionários.</p>
+
+                <p>"Você está utilizando a versão inicial do aplicativo, por isso apenas algumas funcionalidades estão disponíveis neste momento.
+                Esperamos melhorá-lo continuamente, de maneira que ele se transforme em um novo meio de comunicação entre a Instituição e seus alunos,
+                professores e funcionários, bem como ofereça acesso a serviços acadêmicos específicos.</p>
+
+                <p>Qualquer dúvida, crítica, sugestão ou elogio que você quiser compartilhar com a equipe do projeto, basta enviar um e-mail para
+                appmeucampus@ifmg.edu.br.</p>
+
+                <p>Muito obrigado!</p>
+            </body>
+        </html>
+        ]]>
+    </string>
     <string name="app_name">app_MeuCampus_release1</string>
     <string name="menu_noticias">Notícias</string>
     <string name="menu_notas_faltas">Notas/Faltas</string>
@@ -9,17 +75,17 @@
     <string name="title_activity_maps">Map</string>
     <string name="ultimas_noticias">Últimas Notícias</string>
     <string name="cardapio">Cardápio do dia</string>
-    <string name="valor_cardapio_a1">chicória</string>
-    <string name="valor_cardapio_j1">chicória</string>
-    <string name="valor_cardapio_a2">macarronese</string>
-    <string name="valor_cardapio_j2">macarronese</string>
-    <string name="valor_cardapio_a3">frango assado</string>
-    <string name="valor_cardapio_j3">frango assado</string>
-    <string name="valor_cardapio_a4">couve refogada</string>
-    <string name="valor_cardapio_j4">couve refogada</string>
-    <string name="valor_cardapio_a5">arroz</string>
-    <string name="valor_cardapio_j5">arroz</string>
-    <string name="valor_cardapio_a6">feijão</string>
-    <string name="valor_cardapio_j6">feijão</string>
+    <string name="valor_cardapio_a1">-</string>
+    <string name="valor_cardapio_j1">-</string>
+    <string name="valor_cardapio_a2">-</string>
+    <string name="valor_cardapio_j2">-</string>
+    <string name="valor_cardapio_a3">-</string>
+    <string name="valor_cardapio_j3">-</string>
+    <string name="valor_cardapio_a4">-</string>
+    <string name="valor_cardapio_j4">-</string>
+    <string name="valor_cardapio_a5">-</string>
+    <string name="valor_cardapio_j5">-</string>
+    <string name="valor_cardapio_a6">-</string>
+    <string name="valor_cardapio_j6">-</string>
     <string name="pick_date">pick_date</string>
 </resources>

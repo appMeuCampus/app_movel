@@ -67,59 +67,57 @@ public class Toolbar_Classe extends AppCompatActivity implements NavigationView.
         switch(item.getItemId()) {
 
             case R.id.menu_meucampus: {
-                Toast.makeText(this, "Menu MeuCampus", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Menu MeuCampus", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(intent);
                 break;
             }
 
             case R.id.menu_noticias: {
-                Toast.makeText(this, "Menu Noticias", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Menu Noticias", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(),ListaNoticiasActivity.class);
                 startActivity(intent);
                 break;
             }
             case R.id.menu_eventos: {
-                Toast.makeText(this, "Menu Evntos", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Menu Evntos", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(),ListaEventosActivity.class);
                 startActivity(intent);
                 break;
             }
             case R.id.menu_calendario_academico: {
-                Toast.makeText(this, "Menu Calendário Acadêmico", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Menu Calendário Acadêmico", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(),CalendarioAcademicoActivity.class);
                 startActivity(intent);
                 break;
             }
             case R.id.menu_cardapio: {
-                Toast.makeText(this, "Menu Cardapio", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Menu Cardapio", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(),CardapioActivity.class);
                 startActivity(intent);
                 break;
             }
             case R.id.menu_busao: {
-                Toast.makeText(this, "Menu Busão", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Menu Busão", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(),HorarioOnibusActivity.class);
                 startActivity(intent);
                 break;
             }
             case R.id.menu_mapa: {
-                Toast.makeText(this, "Menu Mapa", Toast.LENGTH_SHORT).show();
-
+                //Toast.makeText(this, "Menu Mapa", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
                 startActivity(intent);
                 break;
             }
-            case R.id.menu_teste: {
+            /*case R.id.menu_teste: {
                 Toast.makeText(this, "Menu Teste", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getApplicationContext(), Teste_Activity.class);
                 startActivity(intent);
                 break;
-            }
+            }*/
             case R.id.menu_sobre: {
-                Toast.makeText(this, "Menu Teste", Toast.LENGTH_SHORT).show();
-
+                //Toast.makeText(this, "Menu Sobre", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), SobreActivity.class);
                 startActivity(intent);
                 break;

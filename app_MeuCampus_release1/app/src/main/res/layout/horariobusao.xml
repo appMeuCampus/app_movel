@@ -25,6 +25,8 @@
 
     <Button
         android:id="@+id/buttonbusaosemana"
+        android:layout_marginLeft="36dp"
+        android:layout_marginRight="36dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Semana"
@@ -34,6 +36,8 @@
 
     <Button
         android:id="@+id/buttonbusaofds"
+        android:layout_marginLeft="36dp"
+        android:layout_marginRight="36dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Final de Semana"

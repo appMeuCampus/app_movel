@@ -10,15 +10,25 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/sobre_texto"
-        android:textAppearance="@android:style/TextAppearance.Holo.Medium"
-        android:text=""/>
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="4dp"
+        android:textAlignment="center"
+        android:text="Seja bem-vindo ao aplicativo do IFMG - Campus Bambuí !"
+        android:textAppearance="@android:style/TextAppearance.Holo.Large"
+        android:textSize="24sp"
+        />
+    <WebView
+        android:id="@+id/webviewfeed"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

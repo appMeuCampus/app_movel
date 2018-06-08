@@ -49,6 +49,7 @@ public class Utils_objNoticia {
 
         String json;
         json = NetworkUtils.getJSONFromAPI(url);
+        Log.i("testeeeeeee", json);
         ArrayList<Noticias_Classe> listaNoticias = new ArrayList<Noticias_Classe>();
         Noticias_Classe noticiaa = new Noticias_Classe();
 
@@ -71,9 +72,9 @@ public class Utils_objNoticia {
 
     public ArrayList<Noticias_Classe> BuscarTexto(String url, int id) throws JSONException {
 
-        Log.i("PASSEI AQUI","PASSEI AQUI");
         String json;
         json = NetworkUtils.getJSONFromAPI(url + id);
+        Log.i("testeeeeeee", json);
         ArrayList<Noticias_Classe> listaNoticias = new ArrayList<Noticias_Classe>();
         Noticias_Classe noticiaa = new Noticias_Classe();
         JSONArray jsonObj = new JSONArray(json);

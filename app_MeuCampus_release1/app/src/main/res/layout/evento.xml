@@ -32,9 +32,11 @@
                 <TextView
                     android:id="@+id/textViewNomeEventoAtual"
                     android:layout_width="wrap_content"
+                    android:textAlignment="center"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
+                    android:paddingBottom="8dp"
                     android:text="Titulo"
                     android:textAppearance="@android:style/TextAppearance.Holo.Large"
                     android:textSize="24sp" />
@@ -175,16 +177,11 @@
                         android:text="xx/xx/xxxx"
                         android:textAppearance="@android:style/TextAppearance.Holo.Widget.TextView" />
                 </TableRow>
-
-                <TextView
-                    android:id="@+id/textViewDescricaoEvento"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:text="Descrição"
-                    android:textAppearance="@android:style/TextAppearance.Holo.Widget.TextView" />
-
             </TableLayout>
+            <WebView
+                android:id="@+id/webviewEvento"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

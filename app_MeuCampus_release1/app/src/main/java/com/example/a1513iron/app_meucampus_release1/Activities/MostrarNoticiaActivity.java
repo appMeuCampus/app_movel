@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.MenuItem;
+import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,12 +23,11 @@ import com.example.a1513iron.app_meucampus_release1.classes.URLImageParser;
 import org.json.JSONException;
 import java.util.ArrayList;
 
-
 public class MostrarNoticiaActivity extends Toolbar_Classe{
 
     private String texto = "vazio";
     private TextView tituloAtual;
-    private TextView textoAtual;
+    private WebView wv;
     private Noticias_Classe noticiaAtual;
     public static final String URL_ACT = "http://app.bambui.ifmg.edu.br/integracao/noticia/retornarNoticia?id=";
 
@@ -42,7 +42,9 @@ public class MostrarNoticiaActivity extends Toolbar_Classe{
         CreateDrawerLayout();
 
         tituloAtual = (TextView) findViewById(R.id.textviewTituloAtual);
-        textoAtual = (TextView) findViewById(R.id.textviewTextoAtual);
+        wv = (WebView) findViewById(R.id.webviewNoticia);
+        wv.getSettings().setJavaScriptEnabled(true);
+        wv.getSettings().setSupportZoom(false);//recomendado pelo android pois n sabe como ira se comportar caso dê zoom
 
         //recuperando os dados passado da activity que chamou essa activity
         Intent it = getIntent();
@@ -60,7 +62,6 @@ public class MostrarNoticiaActivity extends Toolbar_Classe{
         String endereco; //"http://10.0.2.2/appmeucampus/integracao/noticia/retornarNoticias"
         // por default o endereco vai ser esse pois estava craashando o app se deixasse vazio...
         // mas isso não irá interferir nas demais funções da classe pois é umavariavel q muda toda x q um método de busca é chamado
-
 
         public RecuperaDados(String url, String operacao,int num){
             this.endereco = url;
@@ -88,22 +89,19 @@ public class MostrarNoticiaActivity extends Toolbar_Classe{
                 listaNoticias.add(noticia);
                 return listaNoticias;
             }
-
         }
 
         @Override
         protected void onPostExecute(ArrayList<Noticias_Classe> listaNoticias) {
-
-            texto = listaNoticias.get(0).getTexto();
+            texto = "<html>" +
+                    " <head></head>" +
+                    " <body style=text-align:justify;color:black;background-color:#eeeeee;>" +
+                    listaNoticias.get(0).getTexto() +
+                    "</body>" +
+                    "</html>";
             tituloAtual.setText(noticiaAtual.getTitulo());
-            //Spanned sp = Html.fromHtml(texto);
-            //textoAtual.setText(sp);
-            textoAtual.setText(Html.fromHtml(texto,new URLImageParser(textoAtual, getApplicationContext()), null));
-
-
+            wv.loadData(texto, "text/html; charset=utf-8", "utf-8");
             load.dismiss();
-
         }
-
     }
 }

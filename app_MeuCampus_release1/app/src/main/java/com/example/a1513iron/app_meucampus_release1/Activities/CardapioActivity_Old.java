@@ -113,13 +113,13 @@ public class CardapioActivity_Old extends SobreActivity implements NavigationVie
                 startActivity(intent);
                 break;
             }
-            case R.id.menu_teste: {
+            /*case R.id.menu_teste: {
                 Toast.makeText(this, "Menu Teste", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getApplicationContext(), Teste_Activity.class);
                 startActivity(intent);
                 break;
-            }
+            }*/
             case R.id.menu_sobre: {
                 Toast.makeText(this, "Menu Teste", Toast.LENGTH_SHORT).show();
 

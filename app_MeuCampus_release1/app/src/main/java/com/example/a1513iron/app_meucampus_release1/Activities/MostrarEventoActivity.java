@@ -9,6 +9,7 @@ import android.support.v4.view.GravityCompat;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +31,7 @@ public class MostrarEventoActivity extends Toolbar_Classe {
     private TextView hora_inicio;
     private TextView hora_termino;
     private TextView data_final;
-    private TextView descricao;
+    private WebView wv;
     private Eventos_Classe eventoAtual;
     private RecuperaDados recd;
 
@@ -52,14 +53,15 @@ public class MostrarEventoActivity extends Toolbar_Classe {
         hora_termino = (TextView) findViewById(R.id.textViewHoraTermino);
         data_inicial = (TextView) findViewById(R.id.textViewDataInicial);
         data_final = (TextView) findViewById(R.id.textViewDataFinal);
-        descricao = (TextView) findViewById(R.id.textViewDescricaoEvento);
+        wv = (WebView) findViewById(R.id.webviewEvento);
+        wv.getSettings().setJavaScriptEnabled(true);
+        wv.getSettings().setSupportZoom(false);//recomendado pelo android pois n sabe como ira se comportar caso dê zoom
 
         nomeEvento.setText("default");
         hora_inicio.setText("default");
         hora_termino.setText("default");
         data_inicial.setText("default");
         data_final.setText("defaul");
-        descricao.setText("default");
 
         Intent it = getIntent();
         eventoAtual = it.getParcelableExtra("Evento");
@@ -103,9 +105,16 @@ public class MostrarEventoActivity extends Toolbar_Classe {
         @Override
         protected void onPostExecute(ArrayList<Eventos_Classe> listaEventos) {
             nomeEvento.setText(listaEventos.get(0).getNome());
-            data_inicial.setText(listaEventos.get(0).getData_inicial());
-            data_final.setText(listaEventos.get(0).getData_final());
-            descricao.setText(listaEventos.get(0).getDescricao());
+            data_inicial.setText(listaEventos.get(0).getData_inicial().replace(' ', '/'));
+            data_final.setText(listaEventos.get(0).getData_final().replace(' ', '/'));
+            //descricao.setText(listaEventos.get(0).getDescricao());
+            String texto = "<html>" +
+                    " <head></head>" +
+                    " <body style=text-align:justify;color:black;background-color:#eeeeee;>" +
+                    listaEventos.get(0).getDescricao() +
+                    "</body>" +
+                    "</html>";
+            wv.loadData(texto, "text/html; charset=utf-8", "utf-8");
             hora_inicio.setText(listaEventos.get(0).getHora_inicio());
             hora_termino.setText(listaEventos.get(0).getHora_termino());
             load.dismiss();

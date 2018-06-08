@@ -36,7 +36,7 @@ public class Utils_objEventos {
             }
             return listaEventos;
         }else{
-            evento.setNome("Erro ao buscar noticia no servidor!");
+            evento.setNome("Erro ao buscar evento no servidor!");
             evento.setId(-1);
             listaEventos.add(evento);
             return listaEventos;
