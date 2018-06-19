@@ -26,7 +26,7 @@
             android:id="@+id/menu_busao"
             android:icon="@drawable/ic_busao"/>
 
-        <item android:title="Mapa"
+        <item android:title="Mapa do Campus"
             android:id="@+id/menu_mapa"
             android:icon="@drawable/ic_map"/>
         <!-- <item android:title="Teste"

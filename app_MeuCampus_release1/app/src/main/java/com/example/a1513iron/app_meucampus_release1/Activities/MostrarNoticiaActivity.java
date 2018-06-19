@@ -95,9 +95,10 @@ public class MostrarNoticiaActivity extends Toolbar_Classe{
         protected void onPostExecute(ArrayList<Noticias_Classe> listaNoticias) {
             texto = "<html>" +
                     " <head></head>" +
-                    " <body style=text-align:justify;color:black;background-color:#eeeeee;>" +
-                    listaNoticias.get(0).getTexto() +
-                    "</body>" +
+                    " <body style='text-align:justify;color:black;'>" +
+                    "<div style='padding: 8px 8px; border: solid 1px #C5E1A5; background-color: #fafafa;'>" +
+            listaNoticias.get(0).getTexto() +
+                    "</div></body>" +
                     "</html>";
             tituloAtual.setText(noticiaAtual.getTitulo());
             wv.loadData(texto, "text/html; charset=utf-8", "utf-8");

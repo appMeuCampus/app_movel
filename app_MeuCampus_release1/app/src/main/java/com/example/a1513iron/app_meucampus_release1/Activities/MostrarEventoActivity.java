@@ -110,9 +110,10 @@ public class MostrarEventoActivity extends Toolbar_Classe {
             //descricao.setText(listaEventos.get(0).getDescricao());
             String texto = "<html>" +
                     " <head></head>" +
-                    " <body style=text-align:justify;color:black;background-color:#eeeeee;>" +
+                    " <body style='text-align:justify;color:black;'>" +
+                    "<div style='padding: 8px 8px; border: solid 1px #C5E1A5; background-color: #fafafa;'>" +
                     listaEventos.get(0).getDescricao() +
-                    "</body>" +
+                    "</div></body>" +
                     "</html>";
             wv.loadData(texto, "text/html; charset=utf-8", "utf-8");
             hora_inicio.setText(listaEventos.get(0).getHora_inicio());

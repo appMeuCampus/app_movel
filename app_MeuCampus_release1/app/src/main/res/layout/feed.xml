@@ -30,7 +30,7 @@
             android:paddingTop="8dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:paddingBottom="4dp"
+            android:paddingBottom="16dp"
             android:textAlignment="center"
             android:text="50 anos IFMG - Campus Bambuí"
             android:textAppearance="@android:style/TextAppearance.Holo.Large"

@@ -24,8 +24,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingRight="8dp"
+            android:padding="8dp"
             android:text="MeuCampus"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textSize="24sp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="38dp"
             android:layout_marginBottom="10dp"/>

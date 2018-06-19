@@ -18,10 +18,8 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="backgroundLayerName" value="ic_launcher_background" />
-                                      <entry key="foregroundImage" value="C:\Users\bolau\Desktop\app_movel\app_MeuCampus_release1\Logotipo_cinquenta_anos_ifmg_bambui.png" />
-                                      <entry key="foregroundLayerName" value="ic_launcher_cinquenta_anos" />
-                                      <entry key="outputName" value="50anos" />
+                                      <entry key="foregroundImage" value="C:\Users\Yago\Desktop\app_movel\app_MeuCampus_release1\imagens\Calendário_Acadêmico_2018_-_a-9.png" />
+                                      <entry key="foregroundLayerName" value="ic_launcher_cal09" />
                                     </map>
                                   </option>
                                 </PersistentState>

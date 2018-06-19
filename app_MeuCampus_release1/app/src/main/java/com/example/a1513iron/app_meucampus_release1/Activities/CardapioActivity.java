@@ -26,7 +26,10 @@ import com.example.a1513iron.app_meucampus_release1.classes.Toolbar_Classe;
 
 import org.json.JSONException;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class CardapioActivity extends Toolbar_Classe {
 
@@ -85,6 +88,14 @@ public class CardapioActivity extends Toolbar_Classe {
         this.textoJ6 = (TextView) findViewById(R.id.j6);
         this.dia_semana = (TextView) findViewById(R.id.dia_da_semana);
 
+        //buscando o cardápio do dia
+        Calendar calendario = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        data = sdf.format(calendario.getTime());
+        //System.out.println("Data formatada: "+sdf.format(calendario.getTime()));
+        RecuperaDados teste = new RecuperaDados(URL,data);
+        teste.execute();
+
     }
 
     @Override
@@ -109,9 +120,6 @@ public class CardapioActivity extends Toolbar_Classe {
                                       int dayOfMonth) {
                     data = ((dayOfMonth < 10)? "0" + String.valueOf(dayOfMonth):String.valueOf(dayOfMonth)) + "/"
                             +((monthOfYear + 1 < 10)? "0" + String.valueOf(monthOfYear + 1):String.valueOf(monthOfYear + 1)) + "/" + String.valueOf(year);
-                    Toast.makeText(CardapioActivity.this,
-                            "DATA =" + data, Toast.LENGTH_SHORT)
-                            .show();
                     /*Intent intent = new Intent(mContext, MostrarCardapioActivity.class);
                     System.out.println(data);
                     intent.putExtra("Data", data);
