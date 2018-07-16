@@ -69,7 +69,7 @@
         </html>
         ]]>
     </string>
-    <string name="app_name">app_MeuCampus_release1</string>
+    <string name="app_name">MeuCampus</string>
     <string name="menu_noticias">Notícias</string>
     <string name="menu_notas_faltas">Notas/Faltas</string>
     <string name="menu_mapa">Mapa</string>
@@ -92,4 +92,5 @@
     <string name="valor_cardapio_a6">-</string>
     <string name="valor_cardapio_j6">-</string>
     <string name="pick_date">pick_date</string>
+    <string name="description_zoom_touch_close">description_zoom_touch_close</string>
 </resources>

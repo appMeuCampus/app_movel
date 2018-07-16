@@ -27,7 +27,7 @@
                 android:id="@+id/imglogo"
                 android:layout_width="match_parent"
                 android:layout_height="240sp"
-                android:src="@mipmap/ic_launcher_flag"/>
+                android:src="@drawable/logo_quadrado"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

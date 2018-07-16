@@ -12,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.a1513iron.app_meucampus_release1.Activities.listener.OnListClickInteractionListener;
@@ -76,6 +77,11 @@ public class ListaNoticiasActivity extends Toolbar_Classe {
 
         @Override
         public void onClick(Eventos_Classe noticiaa) {
+
+        }
+
+        @Override
+        public void onClick(Integer src, View view) {
 
         }
     };

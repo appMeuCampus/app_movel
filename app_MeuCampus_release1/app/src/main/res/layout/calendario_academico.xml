@@ -4,77 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".Activities.CalendarioAcademicoActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <ScrollView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_calendario"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="240sp"
-                android:src="@mipmap/ic_launcher_cal01" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="240sp"
-                android:src="@mipmap/ic_launcher_cal02" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="240sp"
-                android:src="@mipmap/ic_launcher_cal03" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="240sp"
-                android:src="@mipmap/ic_launcher_cal04" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="240sp"
-                android:src="@mipmap/ic_launcher_cal05" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="240sp"
-                android:src="@mipmap/ic_launcher_cal06" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="240sp"
-                android:src="@mipmap/ic_launcher_cal07" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="240sp"
-                android:src="@mipmap/ic_launcher_cal08" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="240sp"
-                android:src="@mipmap/ic_launcher_cal09" />
-
-            <WebView
-                android:id="@+id/webviewCalendarioAcademico"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="16dp">
-
-            </WebView>
-        </LinearLayout>
-    </ScrollView>
 </LinearLayout>
