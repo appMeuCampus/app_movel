@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "917324640049",
+    "firebase_url": "https://app-meu-campus.firebaseio.com",
+    "project_id": "app-meu-campus",
+    "storage_bucket": "app-meu-campus.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:917324640049:android:5ba79ac2155585f8",
+        "android_client_info": {
+          "package_name": "com.example.a1513iron.app_meucampus_release1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "917324640049-oitf2ctabv0d7l9768aiv48hls9cfbrc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.a1513iron.app_meucampus_release1",
+            "certificate_hash": "7336380844c51317d06c0fe91c12e01df61525c4"
+          }
+        },
+        {
+          "client_id": "917324640049-91asg6j2mbt6aehle3kued3otsovk1ca.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3mP5SFJueY3q408ZdLTIqyfs3yqMSbnA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "917324640049-91asg6j2mbt6aehle3kued3otsovk1ca.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -24,6 +24,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:paddingTop="16dp"
                 android:id="@+id/imglogo"
                 android:layout_width="match_parent"
                 android:layout_height="240sp"

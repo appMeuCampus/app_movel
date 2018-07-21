@@ -54,14 +54,15 @@
             <head></head>
             <body style="text-align:justify;color:black;font-size:16px;background-color:#fafafa;">
                 <div style="padding: 8px 8px; border: solid 1px #C5E1A5; background-color: #fafafa;">
+                    <p>Seja bem-vindo ao aplicativo do IFMG - Campus Bambuí!</p>
+
                     <p>A proposta é que ele seja um novo meio de comunicação entre a Instituição e seus alunos, professores e funcionários.</p>
 
                     <p>"Você está utilizando a versão inicial do aplicativo, por isso apenas algumas funcionalidades estão disponíveis neste momento.
-                    Esperamos melhorá-lo continuamente, de maneira que ele se transforme em um novo meio de comunicação entre a Instituição e seus alunos,
-                    professores e funcionários, bem como ofereça acesso a serviços acadêmicos específicos.</p>
+                    Esperamos melhorá-lo continuamente, de maneira que ele passe a oferecer também acesso a serviços acadêmicos específicos.</p>
 
                     <p>Qualquer dúvida, crítica, sugestão ou elogio que você quiser compartilhar com a equipe do projeto, basta enviar um e-mail para
-                    appmeucampus@ifmg.edu.br.</p>
+                     <address style="color:blue">appmeucampus.bambui@ifmg.edu.br</address></p>
 
                     <p>Muito obrigado!</p>
                 </div>
