@@ -54,8 +54,6 @@
             <head></head>
             <body style="text-align:justify;color:black;font-size:16px;background-color:#fafafa;">
                 <div style="padding: 8px 8px; border: solid 1px #C5E1A5; background-color: #fafafa;">
-                    <p>Seja bem-vindo ao aplicativo do IFMG - Campus Bambuí!</p>
-
                     <p>A proposta é que ele seja um novo meio de comunicação entre a Instituição e seus alunos, professores e funcionários.</p>
 
                     <p>"Você está utilizando a versão inicial do aplicativo, por isso apenas algumas funcionalidades estão disponíveis neste momento.
@@ -94,4 +92,11 @@
     <string name="valor_cardapio_j6">-</string>
     <string name="pick_date">pick_date</string>
     <string name="description_zoom_touch_close">description_zoom_touch_close</string>
+
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <!--
+        This is the name that users will see when interacting with this channel.
+        It should describe the category of notifications that will be sent through this channel
+     -->
+    <string name="default_notification_channel_name" translatable="true">News</string>
 </resources>

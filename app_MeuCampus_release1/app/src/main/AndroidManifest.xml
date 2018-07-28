@@ -16,7 +16,7 @@
         android:icon="@mipmap/logo_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/logo_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MaterialThemeIFMG">
         <activity android:name=".Activities.MainActivity">
@@ -26,6 +26,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name=".Services.MyFirebaseInstanceIdService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service android:name=".Services.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -54,7 +66,8 @@
         <activity android:name=".Activities.MostrarEventoActivity" />
         <activity android:name=".Activities.CardapioActivity" />
         <activity android:name=".Activities.MostrarCardapioActivity" />
-        <activity android:name=".Activities.CalendarioAcademicoActivity"></activity>
+        <activity android:name=".Activities.CalendarioAcademicoActivity" />
+
     </application>
 
 </manifest>

@@ -27,7 +27,7 @@
             android:padding="8dp"
             android:text="MeuCampus"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="38dp"
             android:layout_marginBottom="10dp"/>
@@ -39,6 +39,7 @@
         android:layout_height="wrap_content"
         android:text="Campus\nBambuí"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="14sp"
         android:layout_marginLeft="2dp"/>
 
 </LinearLayout>

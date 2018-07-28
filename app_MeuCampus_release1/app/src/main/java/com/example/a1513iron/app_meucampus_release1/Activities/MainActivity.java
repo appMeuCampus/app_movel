@@ -1,5 +1,8 @@
 package com.example.a1513iron.app_meucampus_release1.Activities;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.webkit.WebView;
@@ -18,7 +21,6 @@ public class MainActivity extends Toolbar_Classe{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FirebaseMessaging.getInstance().subscribeToTopic("global");
 
         this.toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(this.toolbar);
