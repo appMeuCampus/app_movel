@@ -87,7 +87,7 @@ public class NotificationUtils {
 
             inboxStyle.addLine(message);
             notification = mBuilder
-                    .setSmallIcon(R.drawable.ic_notificationicon_provisorio)
+                    .setSmallIcon(R.drawable.ic_notificationicon_teste5)
                     .setContentTitle(title)
                     .setContentText(message)
                     .setAutoCancel(true)
